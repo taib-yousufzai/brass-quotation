@@ -9,6 +9,7 @@ import * as copyService from '../../utils/copyQuotationService'
 // Mock the database operations
 vi.mock('../../utils/dbOperations', () => ({
   getAllQuotations: vi.fn(),
+  getQuotationsPaginated: vi.fn(),
   deleteQuotation: vi.fn(),
   saveQuotation: vi.fn(),
   loadQuotation: vi.fn()
@@ -133,6 +134,14 @@ describe('Integration Test: Complete Copy Workflow', () => {
     dbOperations.getAllQuotations.mockResolvedValue({
       success: true,
       data: [mockOriginalQuotation]
+    })
+    
+    // Mock successful paginated quotations loading for QuotationList
+    dbOperations.getQuotationsPaginated.mockResolvedValue({
+      success: true,
+      data: [mockOriginalQuotation],
+      lastDoc: null,
+      hasMore: false
     })
     
     // Mock successful quotation loading for copy operation

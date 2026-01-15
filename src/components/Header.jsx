@@ -45,7 +45,7 @@ function Header({ formData, setFormData, theme, setTheme, currency, setCurrency,
       <div className="brand">
         <div className="logo">MQ</div>
         <div className="brand-text">
-          <h1>Morphium Quotation Builder</h1>
+          <h1>Lifeasy Interior</h1>
           <p>Design & Build Solutions</p>
         </div>
       </div>

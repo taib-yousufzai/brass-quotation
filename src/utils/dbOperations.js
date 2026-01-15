@@ -1,4 +1,4 @@
-import { collection, doc, setDoc, getDoc, getDocs, query, orderBy, deleteDoc } from 'firebase/firestore'
+import { collection, doc, setDoc, getDoc, getDocs, query, orderBy, deleteDoc, limit, startAfter } from 'firebase/firestore'
 import { db } from '../firebase'
 
 const COLLECTION_NAME = 'quotations'
@@ -49,6 +49,7 @@ export const loadQuotation = async (docNo) => {
 
 /**
  * Get all quotations
+ * @deprecated Consider using getQuotationsPaginated for better performance with large datasets
  */
 export const getAllQuotations = async () => {
   try {
@@ -65,6 +66,70 @@ export const getAllQuotations = async () => {
   } catch (error) {
     console.error('Error fetching quotations:', error)
     return { success: false, message: error.message, data: [] }
+  }
+}
+
+/**
+ * Get paginated quotations
+ * @param {number} pageSize - Number of quotations per page (default: 20)
+ * @param {DocumentSnapshot} lastDoc - Last document from previous page (for pagination)
+ * @returns {Promise<{success: boolean, data: Array, lastDoc: DocumentSnapshot, hasMore: boolean, message?: string}>}
+ */
+export const getQuotationsPaginated = async (pageSize = 20, lastDoc = null) => {
+  try {
+    const quotationsRef = collection(db, COLLECTION_NAME)
+    
+    // Build query with ordering and limit
+    // Fetch pageSize + 1 to detect if more pages exist
+    let q = query(
+      quotationsRef,
+      orderBy('updatedAt', 'desc'),
+      limit(pageSize + 1)
+    )
+    
+    // If lastDoc is provided, start after it for pagination
+    if (lastDoc) {
+      q = query(
+        quotationsRef,
+        orderBy('updatedAt', 'desc'),
+        startAfter(lastDoc),
+        limit(pageSize + 1)
+      )
+    }
+    
+    const querySnapshot = await getDocs(q)
+    
+    const quotations = []
+    querySnapshot.forEach((doc) => {
+      quotations.push({ id: doc.id, ...doc.data() })
+    })
+    
+    // Detect if more pages exist by checking if we got more than pageSize
+    const hasMore = quotations.length > pageSize
+    
+    // If we have more, remove the extra item (it was just for detection)
+    if (hasMore) {
+      quotations.pop()
+    }
+    
+    // Get the last document snapshot for next page cursor
+    const lastDocSnapshot = querySnapshot.docs[quotations.length - 1] || null
+    
+    return {
+      success: true,
+      data: quotations,
+      lastDoc: lastDocSnapshot,
+      hasMore: hasMore
+    }
+  } catch (error) {
+    console.error('Error fetching paginated quotations:', error)
+    return {
+      success: false,
+      message: error.message,
+      data: [],
+      lastDoc: null,
+      hasMore: false
+    }
   }
 }
 
