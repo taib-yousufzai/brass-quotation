@@ -272,6 +272,13 @@ function QuotationBuilder() {
   }
 
   const loadByNumber = async () => {
+    const pass = prompt('Enter admin password:')
+    if (pass !== 'admin123') {
+      if (pass !== null) {
+        alert('Incorrect password')
+      }
+      return
+    }
     const qno = prompt('Enter quotation number to load:')
     if (!qno) return
     await loadQuotationFromFirebase(qno)
