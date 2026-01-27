@@ -191,7 +191,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
       const yesterday = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
       const yesterdayStr = yesterday.toISOString().split('T')[0]
-      
+
       const yesterdayQuotation = {
         ...mockQuotations[0],
         date: yesterdayStr
@@ -215,7 +215,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
       const oldDate = new Date()
       oldDate.setDate(oldDate.getDate() - 5)
       const oldDateStr = oldDate.toISOString().split('T')[0]
-      
+
       const oldQuotation = {
         ...mockQuotations[0],
         date: oldDateStr
@@ -333,7 +333,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
         clientName: 'Test Client 1',
         rows: mockQuotations[0].rows
       }
-      
+
       copyQuotationService.copyQuotationToBuilder.mockReturnValue(mockCopiedData)
       copyQuotationService.createCopyUrlParams.mockReturnValue('copy=test-id-1')
 
@@ -372,7 +372,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
     })
 
     it('should show Load button in admin mode', async () => {
-      global.prompt.mockReturnValue('MorphiumAdmin@2024') // Admin mode
+      global.prompt.mockReturnValue('admin123') // Admin mode
 
       renderQuotationList()
 
@@ -390,7 +390,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
     })
 
     it('should navigate to builder with load parameter when Load button is clicked', async () => {
-      global.prompt.mockReturnValue('MorphiumAdmin@2024')
+      global.prompt.mockReturnValue('admin123')
 
       renderQuotationList()
 
@@ -429,7 +429,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
     })
 
     it('should show Delete button in admin mode', async () => {
-      global.prompt.mockReturnValue('MorphiumAdmin@2024') // Admin mode
+      global.prompt.mockReturnValue('admin123') // Admin mode
 
       renderQuotationList()
 
@@ -447,7 +447,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
     })
 
     it('should delete quotation when Delete button is clicked and confirmed', async () => {
-      global.prompt.mockReturnValue('MorphiumAdmin@2024')
+      global.prompt.mockReturnValue('admin123')
       global.confirm.mockReturnValue(true)
       dbOperations.deleteQuotation.mockResolvedValue({
         success: true,
@@ -476,7 +476,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
     })
 
     it('should NOT delete quotation when Delete is cancelled', async () => {
-      global.prompt.mockReturnValue('MorphiumAdmin@2024')
+      global.prompt.mockReturnValue('admin123')
       global.confirm.mockReturnValue(false)
 
       renderQuotationList()
@@ -513,7 +513,7 @@ describe('QuotationList - Verify Existing Functionality Preserved', () => {
     })
 
     it('should display "Admin Mode" when in admin mode', async () => {
-      global.prompt.mockReturnValue('MorphiumAdmin@2024')
+      global.prompt.mockReturnValue('admin123')
 
       renderQuotationList()
 
@@ -567,7 +567,7 @@ describe('QuotationList Copy Functionality', () => {
     // Check that Copy to Builder buttons are present
     const copyButtons = screen.getAllByText('Copy to Builder')
     expect(copyButtons).toHaveLength(2)
-    
+
     // Check that buttons have the correct icon
     const copyIcons = screen.getAllByTestId('copy-icon')
     expect(copyIcons).toHaveLength(2)
@@ -591,7 +591,7 @@ describe('QuotationList Copy Functionality', () => {
       clientName: 'Test Client 1',
       rows: mockQuotations[0].rows
     }
-    
+
     copyQuotationService.copyQuotationToBuilder.mockReturnValue(mockCopiedData)
     copyQuotationService.createCopyUrlParams.mockReturnValue('copy=test-id-1')
 
@@ -628,10 +628,10 @@ describe('QuotationList Copy Functionality', () => {
     })
 
     const copyButton = screen.getAllByText('Copy to Builder')[0]
-    
+
     // Mock alert to prevent actual alert dialogs
     global.alert = vi.fn()
-    
+
     fireEvent.click(copyButton)
 
     // The loading state should be visible briefly before the error is handled
@@ -683,7 +683,7 @@ describe('QuotationList Copy Functionality', () => {
     })
 
     const copyButtons = screen.getAllByText('Copy to Builder')
-    
+
     // Click first copy button
     fireEvent.click(copyButtons[0])
 
@@ -691,10 +691,10 @@ describe('QuotationList Copy Functionality', () => {
     // Check that the copy operation was called
     expect(copyQuotationService.copyQuotationToBuilder).toHaveBeenCalledTimes(1)
     expect(copyQuotationService.copyQuotationToBuilder).toHaveBeenCalledWith(mockQuotations[0])
-    
+
     // Check that navigation occurred
     expect(mockNavigate).toHaveBeenCalledWith('/?copy=test-id-1')
-    
+
     // Check that success message was shown
     expect(global.alert).toHaveBeenCalledWith('Quotation LI-0001 copied successfully! Redirecting to builder...')
   })
@@ -728,7 +728,7 @@ describe('QuotationList Copy Functionality', () => {
     await waitFor(() => {
       expect(copyQuotationService.copyQuotationToBuilder).toHaveBeenCalledWith(mockQuotations[0])
       expect(mockSessionStorage.setItem).toHaveBeenCalledWith(
-        'copiedQuotationData', 
+        'copiedQuotationData',
         JSON.stringify(expectedCopiedData)
       )
     })
@@ -741,7 +741,7 @@ describe('QuotationList Copy Functionality', () => {
       clientName: 'Test Client 1',
       rows: mockQuotations[0].rows
     }
-    
+
     copyQuotationService.copyQuotationToBuilder.mockReturnValue(mockCopiedData)
     copyQuotationService.createCopyUrlParams.mockReturnValue('copy=test-id-1')
 

@@ -8,8 +8,9 @@ import QuotePreview from '../components/QuotePreview'
 import Totals from '../components/Totals'
 import Actions from '../components/Actions'
 import { exportToPDF } from '../utils/pdfExport'
-import { saveQuotation, loadQuotation } from '../utils/dbOperations'
+import { saveQuotation, loadQuotation, testFirebaseConnection } from '../utils/dbOperations'
 import { copyQuotationToBuilder } from '../utils/copyQuotationService'
+import { exportToExcel, importFromExcel } from '../utils/excelHelpers'
 
 function QuotationBuilder() {
   const navigate = useNavigate()
@@ -47,6 +48,9 @@ function QuotationBuilder() {
     document.documentElement.setAttribute('data-theme', theme)
     autoSetQuoteNumber()
     loadFromStorage()
+
+    // Test Firebase connection on startup
+    testFirebaseConnection()
 
     // Check if admin mode is already active
     const isAdmin = sessionStorage.getItem('adminMode') === 'true'
@@ -91,10 +95,15 @@ function QuotationBuilder() {
 
     // Also save to Firebase if quotation number exists
     if (formData.docNo) {
+      console.log('Attempting auto-save for:', formData.docNo)
       const result = await saveQuotation(draft)
       if (result.success) {
-        console.log('Auto-saved to database:', formData.docNo)
+        console.log('✓ Auto-saved to database:', formData.docNo)
+      } else {
+        console.error('✗ Auto-save failed:', result.message)
       }
+    } else {
+      console.log('Skipping auto-save: no docNo')
     }
   }
 
@@ -190,8 +199,11 @@ function QuotationBuilder() {
       return { success: false }
     }
     const data = { ...formData, rows }
+    console.log('Manual save triggered for:', formData.docNo)
     const result = await saveQuotation(data)
-    if (showAlert) alert(result.message)
+    if (showAlert) {
+      alert(result.success ? result.message : `Error: ${result.message}`)
+    }
     return result
   }
 
@@ -254,10 +266,61 @@ function QuotationBuilder() {
     window.print()
   }
 
+  const handleExportCSV = () => {
+    try {
+      const currentQuotation = { ...formData, rows }
+      const filename = `quotation_${formData.docNo || 'draft'}_${new Date().toISOString().split('T')[0]}.xlsx`
+      exportToExcel([currentQuotation], filename)
+    } catch (error) {
+      console.error('Export Excel error:', error)
+      alert('Error exporting to Excel')
+    }
+  }
+
+  const handleImportCSV = async (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    if (rows.length > 0 && !confirm('This will overwrite your current quotation. Continue?')) {
+      event.target.value = ''
+      return
+    }
+
+    try {
+      const importedData = await importFromExcel(file)
+      if (importedData.length === 0) {
+        throw new Error('No valid quotation found in Excel file')
+      }
+
+      // Take the first quotation from the Excel
+      const data = importedData[0]
+
+      setRows(data.rows || [])
+      setFormData({
+        docNo: data.docNo || '',
+        clientName: data.clientName || '',
+        location: data.location || '',
+        projectTitle: data.projectTitle || '',
+        date: data.date || new Date().toISOString().split('T')[0],
+        discount: data.discount || 0,
+        handling: data.handling || 10,
+        tax: data.tax || 18,
+        terms: data.terms || '1. 30% advance upon order confirmation.\n2. Balance as per progress milestones.'
+      })
+
+      alert('Quotation imported successfully!')
+    } catch (error) {
+      console.error('Import Excel error:', error)
+      alert(`Error importing Excel: ${error.message}`)
+    } finally {
+      event.target.value = ''
+    }
+  }
+
   const toggleStaffMode = () => {
     if (!staffMode) {
       const pass = prompt('Enter admin password:')
-      if (pass === 'MorphiumAdmin@2024') {
+      if (pass === 'admin123') {
         setStaffMode(true)
         sessionStorage.setItem('adminMode', 'true')
         document.body.classList.add('staff-mode')
@@ -305,6 +368,8 @@ function QuotationBuilder() {
         handlePrint={handlePrint}
         saveToFirebase={saveToFirebase}
         clearAll={clearAll}
+        handleExportCSV={handleExportCSV}
+        handleImportCSV={handleImportCSV}
       />
       <ClientDetails formData={formData} setFormData={setFormData} />
       <div className="layout">

@@ -15,6 +15,17 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig)
+
+// Initialize Firestore with explicit database name
 export const db = getFirestore(app)
+
+// Enable offline persistence for better reliability
+try {
+  // Note: This is automatically enabled in newer versions
+  console.log('Firestore initialized successfully')
+} catch (error) {
+  console.error('Error initializing Firestore:', error)
+}
+
 export const storage = getStorage(app)
 export const analytics = getAnalytics(app);

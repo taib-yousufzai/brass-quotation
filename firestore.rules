@@ -1,8 +1,9 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow read/write to quotations collection
-    match /quotations/{quotationId} {
+    // Allow unrestricted read/write access to quotations collection
+    // This is for development/testing - consider adding authentication in production
+    match /quotations/{document=**} {
       allow read, write: if true;
     }
   }

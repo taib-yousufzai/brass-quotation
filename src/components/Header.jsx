@@ -1,6 +1,8 @@
-import { FaFileAlt, FaArrowsAltV, FaPalette, FaRupeeSign, FaUserShield, FaLink, FaList, FaDownload, FaFilePdf, FaPrint, FaSave, FaTrash } from 'react-icons/fa'
+import { useRef } from 'react'
+import { FaFileAlt, FaArrowsAltV, FaPalette, FaRupeeSign, FaUserShield, FaLink, FaList, FaDownload, FaFilePdf, FaPrint, FaSave, FaTrash, FaFileExport, FaFileImport } from 'react-icons/fa'
 
-function Header({ formData, setFormData, theme, setTheme, currency, setCurrency, pageSize, setPageSize, orientation, setOrientation, toggleStaffMode, staffMode, navigate, loadByNumber, handleExportPDF, handlePrint, saveToFirebase, clearAll }) {
+function Header({ formData, setFormData, theme, setTheme, currency, setCurrency, pageSize, setPageSize, orientation, setOrientation, toggleStaffMode, staffMode, navigate, loadByNumber, handleExportPDF, handlePrint, saveToFirebase, clearAll, handleExportCSV, handleImportCSV }) {
+  const fileInputRef = useRef(null)
 
   const handleThemeChange = (e) => {
     const newTheme = e.target.value
@@ -138,6 +140,20 @@ function Header({ formData, setFormData, theme, setTheme, currency, setCurrency,
           </button>
           <button className="btn-secondary" onClick={copyLink}>
             <FaLink /> Copy Link
+          </button>
+          <div style={{ display: 'none' }}>
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept=".xlsx,.xls"
+              onChange={handleImportCSV}
+            />
+          </div>
+          <button className="btn-secondary" onClick={() => fileInputRef.current?.click()} title="Import from Excel">
+            <FaFileImport /> Import Excel
+          </button>
+          <button className="btn-secondary" onClick={handleExportCSV} title="Export to Excel">
+            <FaFileExport /> Export Excel
           </button>
         </div>
       </div>

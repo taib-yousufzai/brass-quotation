@@ -55,7 +55,7 @@ function ViewQuotation() {
       // Ask for password after a short delay to not block rendering
       setTimeout(() => {
         const pass = prompt('Enter admin password to enable admin tools (leave blank for client view):')
-        if (pass === 'MorphiumAdmin@2024') {
+        if (pass === 'admin123') {
           setStaffMode(true)
           sessionStorage.setItem('adminMode', 'true')
         }

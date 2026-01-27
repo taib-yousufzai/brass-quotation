@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaEye, FaEdit, FaTrash, FaArrowLeft, FaClock, FaPrint, FaSearch, FaCopy } from 'react-icons/fa'
-import { getAllQuotations, deleteQuotation, getQuotationsPaginated } from '../utils/dbOperations'
+import { FaEye, FaEdit, FaTrash, FaArrowLeft, FaClock, FaPrint, FaSearch, FaCopy, FaFileExport } from 'react-icons/fa'
+import { getAllQuotations, deleteQuotation, getQuotationsPaginated, saveQuotation } from '../utils/dbOperations'
 import { copyQuotationToBuilder, createCopyUrlParams } from '../utils/copyQuotationService'
+import { exportToExcel, importFromExcel } from '../utils/excelHelpers'
 
 function QuotationList() {
   const navigate = useNavigate()
@@ -12,17 +13,18 @@ function QuotationList() {
   const [staffMode, setStaffMode] = useState(false)
   const [loading, setLoading] = useState(true)
   const [copyingId, setCopyingId] = useState(null)
-  
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [lastDocSnapshot, setLastDocSnapshot] = useState(null)
   const [hasMorePages, setHasMorePages] = useState(false)
   const [pageSize] = useState(20)
   const [isSearching, setIsSearching] = useState(false)
-  
+
   // Error handling state
   const [error, setError] = useState(null)
   const [retryAction, setRetryAction] = useState(null)
+  const fileInputRef = useRef(null)
 
   useEffect(() => {
     // Load quotations first for faster page load
@@ -36,7 +38,7 @@ function QuotationList() {
       // Ask for password after a short delay to not block rendering
       setTimeout(() => {
         const pass = prompt('Enter admin password (leave blank for client view):')
-        if (pass === 'MorphiumAdmin@2024') {
+        if (pass === 'admin123') {
           setStaffMode(true)
           sessionStorage.setItem('adminMode', 'true')
         }
@@ -47,15 +49,15 @@ function QuotationList() {
   const loadQuotations = async (lastDoc = null, isNextPage = false) => {
     setLoading(true)
     setError(null) // Clear any previous errors
-    
+
     const result = await getQuotationsPaginated(pageSize, lastDoc)
-    
+
     if (result.success) {
       setQuotations(result.data)
       setFilteredQuotations(result.data)
       setLastDocSnapshot(result.lastDoc)
       setHasMorePages(result.hasMore)
-      
+
       if (isNextPage) {
         setCurrentPage(prev => prev + 1)
       }
@@ -70,7 +72,7 @@ function QuotationList() {
   const handleSearch = async (value) => {
     setSearchTerm(value)
     setError(null) // Clear any previous errors
-    
+
     // If search is cleared, reset to paginated mode and reload page 1
     if (!value.trim()) {
       setIsSearching(false)
@@ -83,9 +85,9 @@ function QuotationList() {
     // When searching, set isSearching to true and load all data
     setIsSearching(true)
     setLoading(true)
-    
+
     const result = await getAllQuotations()
-    
+
     if (result.success) {
       // Filter the complete dataset
       const searchLower = value.toLowerCase()
@@ -95,7 +97,7 @@ function QuotationList() {
         q.projectTitle?.toLowerCase().includes(searchLower) ||
         q.location?.toLowerCase().includes(searchLower)
       )
-      
+
       setQuotations(result.data)
       setFilteredQuotations(filtered)
     } else {
@@ -103,7 +105,7 @@ function QuotationList() {
       setError(result.message || 'Error loading quotations for search')
       setRetryAction(() => () => handleSearch(value))
     }
-    
+
     setLoading(false)
   }
 
@@ -125,20 +127,89 @@ function QuotationList() {
         q.projectTitle?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         q.location?.toLowerCase().includes(searchTerm.toLowerCase())
       )
-      
+
       setQuotations(updatedQuotations)
       setFilteredQuotations(updatedFiltered)
-      
+
       // If we deleted all items on the current page and we're not on page 1, go back to page 1
       if (updatedFiltered.length === 0 && currentPage > 1 && !isSearching) {
         setCurrentPage(1)
         setLastDocSnapshot(null)
         await loadQuotations(null, false)
       }
-      
+
       alert(result.message)
     } else {
       alert(result.message || 'Error deleting quotation')
+    }
+  }
+
+  const handleExport = async () => {
+    try {
+      setLoading(true)
+      const result = await getAllQuotations()
+      if (result.success) {
+        const filename = `quotations_export_${new Date().toISOString().split('T')[0]}.xlsx`
+        exportToExcel(result.data, filename)
+      } else {
+        alert('Failed to fetch quotations for export')
+      }
+    } catch (error) {
+      console.error('Export error:', error)
+      alert('Error exporting quotations')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleExportSingle = (quotation) => {
+    try {
+      const filename = `quotation_${quotation.docNo}_${new Date().toISOString().split('T')[0]}.xlsx`
+      exportToExcel([quotation], filename)
+    } catch (error) {
+      console.error('Export single error:', error)
+      alert('Error exporting quotation')
+    }
+  }
+
+  const handleImport = async (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    if (!confirm('Importing will overwrite existing quotations with the same Quotation Number. Continue?')) {
+      event.target.value = '' // Reset input
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const importedData = await importFromExcel(file)
+
+      if (importedData.length === 0) {
+        throw new Error('No valid quotations found in Excel file')
+      }
+
+      let successCount = 0
+      let errorCount = 0
+
+      for (const quotation of importedData) {
+        const result = await saveQuotation(quotation)
+        if (result.success) {
+          successCount++
+        } else {
+          errorCount++
+        }
+      }
+
+      alert(`Import completed!\nSuccessful: ${successCount}\nFailed: ${errorCount}`)
+      loadQuotations() // Reload list
+    } catch (error) {
+      console.error('Import error:', error)
+      alert(`Error importing file: ${error.message}`)
+    } finally {
+      setLoading(false)
+      event.target.value = '' // Reset input
     }
   }
 
@@ -208,13 +279,13 @@ function QuotationList() {
     setLastDocSnapshot(null)
     loadQuotations(null, false)
   }
-  
+
   const handleRetry = () => {
     if (retryAction) {
       retryAction()
     }
   }
-  
+
   const dismissError = () => {
     setError(null)
     setRetryAction(null)
@@ -247,6 +318,29 @@ function QuotationList() {
           </span>
           <button className="btn-secondary" onClick={() => navigate('/')}>
             <FaArrowLeft /> Back to Builder
+          </button>
+        </div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: 'none' }}
+            accept=".xlsx,.xls"
+            onChange={handleImport}
+          />
+          <button
+            className="btn-secondary"
+            onClick={() => fileInputRef.current?.click()}
+            title="Import Quotations from Excel"
+          >
+            Import Excel
+          </button>
+          <button
+            className="btn-secondary"
+            onClick={handleExport}
+            title="Export All Quotations to Excel"
+          >
+            Export Excel
           </button>
         </div>
       </div>
@@ -384,6 +478,14 @@ function QuotationList() {
                   <button
                     className="btn-secondary"
                     style={{ marginRight: '8px', padding: '6px 12px' }}
+                    onClick={() => handleExportSingle(q)}
+                    title="Export this quotation to CSV"
+                  >
+                    <FaFileExport /> Export
+                  </button>
+                  <button
+                    className="btn-secondary"
+                    style={{ marginRight: '8px', padding: '6px 12px' }}
                     onClick={() => handlePrint(q)}
                   >
                     <FaPrint /> Print
@@ -447,10 +549,10 @@ function QuotationList() {
 
       {/* Pagination Controls - Only show when not searching */}
       {!isSearching && !searchTerm && (
-        <div style={{ 
-          marginTop: '20px', 
-          display: 'flex', 
-          justifyContent: 'space-between', 
+        <div style={{
+          marginTop: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
           padding: '15px',
           background: 'white',

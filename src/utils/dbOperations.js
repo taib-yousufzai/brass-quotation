@@ -4,12 +4,35 @@ import { db } from '../firebase'
 const COLLECTION_NAME = 'quotations'
 
 /**
+ * Test Firebase connection
+ */
+export const testFirebaseConnection = async () => {
+  try {
+    console.log('Testing Firebase connection...')
+    const testDoc = doc(db, 'test', 'connection')
+    await setDoc(testDoc, { timestamp: new Date().toISOString() })
+    console.log('✓ Firebase connection test successful')
+    return { success: true }
+  } catch (error) {
+    console.error('✗ Firebase connection test failed:', error)
+    return { success: false, error: error.message }
+  }
+}
+
+/**
  * Save or update a quotation in Firebase
  */
 export const saveQuotation = async (quotationData) => {
   try {
+    console.log('saveQuotation called with:', quotationData.docNo)
+    
     if (!quotationData.docNo) {
       throw new Error('Quotation number is required')
+    }
+
+    if (!db) {
+      console.error('Firebase db is not initialized!')
+      throw new Error('Database connection not available')
     }
 
     const data = {
@@ -18,13 +41,28 @@ export const saveQuotation = async (quotationData) => {
       createdAt: quotationData.createdAt || new Date().toISOString()
     }
 
+    console.log('Attempting to save to Firebase with docNo:', quotationData.docNo)
     const docRef = doc(db, COLLECTION_NAME, quotationData.docNo)
-    await setDoc(docRef, data, { merge: true })
+    console.log('Document reference created:', docRef.path)
+    
+    await setDoc(docRef, data)
+    console.log('setDoc completed successfully')
     
     return { success: true, message: 'Quotation saved successfully!' }
   } catch (error) {
     console.error('Error saving quotation:', error)
-    return { success: false, message: error.message }
+    console.error('Error code:', error.code)
+    console.error('Error message:', error.message)
+    
+    // Provide more helpful error messages
+    let userMessage = error.message
+    if (error.code === 'permission-denied') {
+      userMessage = 'Permission denied. Please check Firestore security rules or try again.'
+    } else if (error.code === 'unavailable') {
+      userMessage = 'Firebase is currently unavailable. Please check your internet connection.'
+    }
+    
+    return { success: false, message: `Save failed: ${userMessage}` }
   }
 }
 
