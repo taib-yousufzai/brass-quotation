@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "name": "brass-space-quotation",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_FIREBASE_API_KEY": "@quotation-firebase-api-key",
+    "VITE_FIREBASE_AUTH_DOMAIN": "@quotation-firebase-auth-domain",
+    "VITE_FIREBASE_PROJECT_ID": "@quotation-firebase-project-id",
+    "VITE_FIREBASE_STORAGE_BUCKET": "@quotation-firebase-storage-bucket",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID": "@quotation-firebase-messaging-sender-id",
+    "VITE_FIREBASE_APP_ID": "@quotation-firebase-app-id",
+    "VITE_FIREBASE_MEASUREMENT_ID": "@quotation-firebase-measurement-id"
+  }
+}

@@ -179,6 +179,75 @@ export const presets = {
     { name: 'Skirting – Premium', unit: 'RFT', rate: 150, remark: 'Stone/Wood', desc: 'Premium skirting matching dining flooring material.' }
 
 ],
+'Master Bedroom' : [
+ /* ================= BED & HEADBOARD ================= */
+    { name: 'Bed – Basic (Box Storage)', unit: 'PCS', rate: 32000, remark: 'Manual storage', desc: 'Custom bed with manual box storage, HDHMR plywood structure (Century/Greenply), laminate finish and sturdy frame.' },
+    { name: 'Bed – Hydraulic Storage', unit: 'PCS', rate: 38000, remark: 'Hydraulic lift', desc: 'Hydraulic storage bed with premium lift mechanism, HDHMR plywood base and designer headboard.' },
+    { name: 'Bed – Floating Design', unit: 'PCS', rate: 52000, remark: 'Designer look', desc: 'Floating-style bed with concealed support, laminate/veneer finish and premium craftsmanship.' },
+    { name: 'Headboard Panel – Wooden', unit: 'SQFT', rate: 650, remark: 'Laminate finish', desc: 'Wooden bed back panel using MDF/HDHMR plywood finished with laminate for accent wall behind bed.' },
+    { name: 'Headboard Panel – Upholstered', unit: 'SQFT', rate: 750, remark: 'Fabric/Leatherette', desc: 'Upholstered bed back panel with premium fabric or leatherette and foam padding.' },
+    { name: 'Headboard Panel – CNC Design', unit: 'SQFT', rate: 1650, remark: 'Duco paint', desc: 'CNC-cut MDF headboard wall design finished with Duco paint for artistic bedroom backdrop.' },
+    { name: 'Headboard Panel – Backlit CNC', unit: 'SQFT', rate: 1950, remark: 'LED backlit', desc: 'CNC laser-cut headboard panel with integrated LED backlighting and concealed wiring.' },
+    /* ================= WARDROBES ================= */
+    { name: 'Wardrobe – Hinged (Standard)', unit: 'SQFT', rate: 1150, remark: 'Laminate finish', desc: 'Hinged wardrobe with HDHMR plywood carcass, laminate shutters, internal shelves, drawers and hanging rod.' },
+    { name: 'Wardrobe – Hinged (Premium)', unit: 'SQFT', rate: 1450, remark: 'PU / Veneer', desc: 'Premium hinged wardrobe with PU or veneer finish, soft-close hinges and luxury internal fittings.' },
+    { name: 'Wardrobe – Sliding', unit: 'SQFT', rate: 1350, remark: 'Mirror / laminate', desc: 'Sliding wardrobe with aluminium channels, mirror/laminate shutters and soft-close mechanism.' },
+    { name: 'Wardrobe – Sliding Premium', unit: 'SQFT', rate: 1650, remark: 'Lacquered glass', desc: 'Premium sliding wardrobe with lacquered glass or PU shutters and smooth soft-close operation.' },
+    { name: 'Walk-in Wardrobe – Open System', unit: 'SQFT', rate: 1650, remark: 'Open shelving', desc: 'Open walk-in wardrobe system with shelves, drawers, hangers and laminate/veneer finish.' },
+    { name: 'Wardrobe Loft Storage', unit: 'SQFT', rate: 750, remark: 'Above wardrobe', desc: 'Loft storage unit above wardrobe with laminate shutters and internal shelving.' },
+    /* ================= DRESSING & STUDY ================= */
+    { name: 'Dressing Table with Mirror', unit: 'PCS', rate: 18500, remark: 'Drawer storage', desc: 'Dressing table with drawers, laminate finish and fixed mirror.' },
+    { name: 'Dressing Unit with LED Mirror', unit: 'PCS', rate: 24500, remark: 'Touch sensor', desc: 'Premium dressing unit with LED mirror, touch sensor and drawer storage.' },
+    { name: 'Study Table – Bedroom', unit: 'SQFT', rate: 1250, remark: 'Wall mounted', desc: 'Wall-mounted study table with laminate finish and cable management.' },
+    { name: 'Study Unit with Storage', unit: 'SQFT', rate: 1450, remark: 'Bookshelves', desc: 'Study unit with overhead shelves, drawers and laminate/veneer finish.' },
+    /* ================= SIDE TABLES & STORAGE ================= */
+    { name: 'Bedside Table – Single Drawer', unit: 'PCS', rate: 6500, remark: 'Soft-close', desc: 'Bedside table with one drawer and laminate finish.' },
+    { name: 'Bedside Table – Two Drawer', unit: 'PCS', rate: 8500, remark: 'Premium', desc: 'Two-drawer bedside unit with soft-close channels and premium edge banding.' },
+    { name: 'Chest of Drawers', unit: 'PCS', rate: 24500, remark: '3–5 drawers', desc: 'Chest of drawers with laminate/veneer finish for additional storage.' },
+    /* ================= WALL TREATMENTS ================= */
+    { name: 'Bedroom Accent Wall – Wooden Panelling', unit: 'SQFT', rate: 650, remark: 'Laminate finish', desc: 'Accent wall behind bed with wooden panelling using MDF/HDHMR plywood.' },
+    { name: 'Fluted MDF Wall Panel', unit: 'SQFT', rate: 750, remark: 'Vertical flutes', desc: 'Decorative fluted MDF wall panels for modern bedroom aesthetics.' },
+    { name: 'Wallpaper – Bedroom', unit: 'SQFT', rate: 220, remark: 'Nilaya/Marshalls', desc: 'Premium wallpaper installation suitable for bedroom environment.' },
+    { name: 'Mirror Wall Panel – Bedroom', unit: 'SQFT', rate: 1650, remark: 'Bevel edge', desc: 'Decorative mirror wall panels to visually enlarge bedroom space.' },
+    { name: 'PU Moulding Wall Design', unit: 'SQFT', rate: 650, remark: 'Classic style', desc: 'PU moulding wall framework painted with premium emulsion for classic bedroom design.' },
+    /* ================= CEILING & LIGHTING ================= */
+    { name: 'False Ceiling – Plain Gypsum', unit: 'SQFT', rate: 135, remark: 'Saint-Gobain / USG', desc: 'Plain gypsum false ceiling with metal framework and smooth finish.' },
+    { name: 'False Ceiling – Designer', unit: 'SQFT', rate: 185, remark: 'Cove lighting', desc: 'Designer false ceiling with layered design and cove lighting provision.' },
+    { name: 'Profile LED Light – Bedroom', unit: 'RFT', rate: 120, remark: 'Aluminium channel', desc: 'Linear LED profile lights for soft ambient bedroom lighting.' },
+    { name: 'COB Light – Bedroom', unit: 'PCS', rate: 850, remark: 'Philips/Wipro', desc: 'Recessed LED COB lights for focused illumination.' },
+    { name: 'Bedside Pendant Light', unit: 'PCS', rate: 6500, remark: 'Hanging type', desc: 'Pendant light fixture installed beside bed for reading and mood lighting.' },
+    { name: 'Wall Sconce – Bedroom', unit: 'PCS', rate: 3200, remark: 'Decorative', desc: 'Wall-mounted decorative light for ambient bedroom lighting.' },
+    /* ================= ELECTRICAL & SMART ================= */
+    { name: 'Bedside Switch Panel', unit: 'POINT', rate: 650, remark: 'Modular', desc: 'Bedside modular switch panel with light and fan controls.' },
+    { name: 'USB Charging Socket', unit: 'POINT', rate: 850, remark: 'Dual USB', desc: 'USB charging socket for bedside convenience.' },
+    { name: 'Smart Switch – Bedroom', unit: 'POINT', rate: 1250, remark: 'App / voice', desc: 'Smart switch for bedroom lights and fan control via app or voice.' },
+    { name: 'Curtain Motor – Bedroom', unit: 'RFT', rate: 1850, remark: 'Somfy / Dooya', desc: 'Motorized curtain track system with remote and app control.' },
+    /* ================= SOFT FURNISHINGS ================= */
+    { name: 'Bedroom Curtains – Fabric', unit: 'RFT', rate: 850, remark: 'D’Decor', desc: 'Premium fabric curtains stitched and installed including hooks and rings.' },
+    { name: 'Sheer Curtains – Bedroom', unit: 'RFT', rate: 650, remark: 'Light fabric', desc: 'Sheer curtain panels for soft daylight filtering.' },
+    { name: 'Blackout Curtains', unit: 'RFT', rate: 1150, remark: 'Hotel-grade', desc: 'Blackout curtains for complete light control and privacy.' },
+    { name: 'Bedroom Area Rug', unit: 'PCS', rate: 18500, remark: 'Under bed', desc: 'Area rug placed partially under bed for warmth and aesthetics.' },
+    /* ================= FLOORING ================= */
+    { name: 'Wooden Flooring – Bedroom', unit: 'SQFT', rate: 420, remark: 'Laminate', desc: 'Laminate wooden flooring with underlay and skirting.' },
+    { name: 'Carpet Flooring – Bedroom', unit: 'SQFT', rate: 580, remark: 'Wall to wall', desc: 'Wall-to-wall carpet flooring for soft and cozy bedroom feel.' },
+    /* ================= DÉCOR & ACCESSORIES ================= */
+    { name: 'Bedroom Wall Art', unit: 'PCS', rate: 7500, remark: 'Decor item', desc: 'Decorative artwork or framed prints suitable for bedroom.' },
+    { name: 'Decorative Mirror – Bedroom', unit: 'PCS', rate: 12500, remark: 'Designer frame', desc: 'Designer mirror with metal or wooden frame.' },
+    { name: 'Indoor Planter – Bedroom', unit: 'PCS', rate: 4500, remark: 'Decor element', desc: 'Decorative indoor planter for bedroom freshness.' },
+    /* ================= CIVIL & FINISHING ================= */
+    { name: 'Wall Putty & Surface Preparation', unit: 'SQFT', rate: 22, remark: 'Birla White', desc: 'Wall surface levelling and putty application before painting.' },
+    { name: 'Wall Painting – Premium', unit: 'SQFT', rate: 42, remark: 'Asian Paints Royale', desc: 'Premium interior painting using Asian Paints Royale emulsion.' },
+    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' },
+     { name: 'Wardrobe (Openable – Laminate)', unit: 'SQFT', rate: 1650, remark: 'Includes drawers, lights, rail, locks', desc: 'Complete wardrobe with laminate finish and accessories.' },
+    { name: 'TV Console (Bedroom)', unit: 'PCS', rate: 1100, remark: 'Per item', desc: 'Bedroom TV console unit.' },
+    { name: 'Dressing Unit (Laminate + Storage)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Dressing unit with storage and laminate finish.' },
+    { name: 'Study Unit', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Study table and storage unit.' },
+    { name: 'Hydraulic Fabric Bed', unit: 'LUMP', rate: 50000, remark: 'Commercial Ply + Hydraulic + Fabric', desc: 'Premium hydraulic bed with fabric upholstery.' },
+    { name: 'Side Table (2 drawers)', unit: 'PCS', rate: 9500, remark: 'Per item', desc: 'Bedside table with 2 drawers.' },
+    
+  
+],
+
   'BED ROOM 1': [
      /* ================= BED & HEADBOARD ================= */
     { name: 'Bed – Basic (Box Storage)', unit: 'PCS', rate: 32000, remark: 'Manual storage', desc: 'Custom bed with manual box storage, HDHMR plywood structure (Century/Greenply), laminate finish and sturdy frame.' },
@@ -237,7 +306,15 @@ export const presets = {
     /* ================= CIVIL & FINISHING ================= */
     { name: 'Wall Putty & Surface Preparation', unit: 'SQFT', rate: 22, remark: 'Birla White', desc: 'Wall surface levelling and putty application before painting.' },
     { name: 'Wall Painting – Premium', unit: 'SQFT', rate: 42, remark: 'Asian Paints Royale', desc: 'Premium interior painting using Asian Paints Royale emulsion.' },
-    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' }
+    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' },
+     { name: 'Wardrobe (Openable – Laminate)', unit: 'SQFT', rate: 1650, remark: 'Includes drawers, lights, rail, locks', desc: 'Complete wardrobe with laminate finish and accessories.' },
+    { name: 'TV Console (Bedroom)', unit: 'PCS', rate: 1100, remark: 'Per item', desc: 'Bedroom TV console unit.' },
+    { name: 'Dressing Unit (Laminate + Storage)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Dressing unit with storage and laminate finish.' },
+    { name: 'Study Unit', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Study table and storage unit.' },
+    { name: 'Hydraulic Fabric Bed', unit: 'LUMP', rate: 50000, remark: 'Commercial Ply + Hydraulic + Fabric', desc: 'Premium hydraulic bed with fabric upholstery.' },
+    { name: 'Side Table (2 drawers)', unit: 'PCS', rate: 9500, remark: 'Per item', desc: 'Bedside table with 2 drawers.' },
+    
+  
   ],
   'BED ROOM 2': [
      /* ================= BED & HEADBOARD ================= */
@@ -297,7 +374,14 @@ export const presets = {
     /* ================= CIVIL & FINISHING ================= */
     { name: 'Wall Putty & Surface Preparation', unit: 'SQFT', rate: 22, remark: 'Birla White', desc: 'Wall surface levelling and putty application before painting.' },
     { name: 'Wall Painting – Premium', unit: 'SQFT', rate: 42, remark: 'Asian Paints Royale', desc: 'Premium interior painting using Asian Paints Royale emulsion.' },
-    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' }
+    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' },
+     { name: 'Wardrobe (Openable – Laminate)', unit: 'SQFT', rate: 1650, remark: 'Includes drawers, lights, rail, locks', desc: 'Complete wardrobe with laminate finish and accessories.' },
+    { name: 'TV Console (Bedroom)', unit: 'PCS', rate: 1100, remark: 'Per item', desc: 'Bedroom TV console unit.' },
+    { name: 'Dressing Unit (Laminate + Storage)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Dressing unit with storage and laminate finish.' },
+    { name: 'Study Unit', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Study table and storage unit.' },
+    { name: 'Hydraulic Fabric Bed', unit: 'LUMP', rate: 50000, remark: 'Commercial Ply + Hydraulic + Fabric', desc: 'Premium hydraulic bed with fabric upholstery.' },
+    { name: 'Side Table (2 drawers)', unit: 'PCS', rate: 9500, remark: 'Per item', desc: 'Bedside table with 2 drawers.' }
+  
 ],
   'BED ROOM 3': [
      /* ================= BED & HEADBOARD ================= */
@@ -357,7 +441,14 @@ export const presets = {
     /* ================= CIVIL & FINISHING ================= */
     { name: 'Wall Putty & Surface Preparation', unit: 'SQFT', rate: 22, remark: 'Birla White', desc: 'Wall surface levelling and putty application before painting.' },
     { name: 'Wall Painting – Premium', unit: 'SQFT', rate: 42, remark: 'Asian Paints Royale', desc: 'Premium interior painting using Asian Paints Royale emulsion.' },
-    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' }
+    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' },
+     { name: 'Wardrobe (Openable – Laminate)', unit: 'SQFT', rate: 1650, remark: 'Includes drawers, lights, rail, locks', desc: 'Complete wardrobe with laminate finish and accessories.' },
+    { name: 'TV Console (Bedroom)', unit: 'PCS', rate: 1100, remark: 'Per item', desc: 'Bedroom TV console unit.' },
+    { name: 'Dressing Unit (Laminate + Storage)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Dressing unit with storage and laminate finish.' },
+    { name: 'Study Unit', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Study table and storage unit.' },
+    { name: 'Hydraulic Fabric Bed', unit: 'LUMP', rate: 50000, remark: 'Commercial Ply + Hydraulic + Fabric', desc: 'Premium hydraulic bed with fabric upholstery.' },
+    { name: 'Side Table (2 drawers)', unit: 'PCS', rate: 9500, remark: 'Per item', desc: 'Bedside table with 2 drawers.' }
+  
 ],
   'BED ROOM 4': [
     /* ================= BED & HEADBOARD ================= */
@@ -417,7 +508,14 @@ export const presets = {
     /* ================= CIVIL & FINISHING ================= */
     { name: 'Wall Putty & Surface Preparation', unit: 'SQFT', rate: 22, remark: 'Birla White', desc: 'Wall surface levelling and putty application before painting.' },
     { name: 'Wall Painting – Premium', unit: 'SQFT', rate: 42, remark: 'Asian Paints Royale', desc: 'Premium interior painting using Asian Paints Royale emulsion.' },
-    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' }
+    { name: 'Skirting – Bedroom', unit: 'RFT', rate: 120, remark: 'Wood/Tile', desc: 'Floor skirting matching bedroom flooring material.' },
+     { name: 'Wardrobe (Openable – Laminate)', unit: 'SQFT', rate: 1650, remark: 'Includes drawers, lights, rail, locks', desc: 'Complete wardrobe with laminate finish and accessories.' },
+    { name: 'TV Console (Bedroom)', unit: 'PCS', rate: 1100, remark: 'Per item', desc: 'Bedroom TV console unit.' },
+    { name: 'Dressing Unit (Laminate + Storage)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Dressing unit with storage and laminate finish.' },
+    { name: 'Study Unit', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Study table and storage unit.' },
+    { name: 'Hydraulic Fabric Bed', unit: 'LUMP', rate: 50000, remark: 'Commercial Ply + Hydraulic + Fabric', desc: 'Premium hydraulic bed with fabric upholstery.' },
+    { name: 'Side Table (2 drawers)', unit: 'PCS', rate: 9500, remark: 'Per item', desc: 'Bedside table with 2 drawers.' }
+  
 ],
   'KITCHEN': [
     { name: 'Kitchen (Acrylic)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Kitchen with HDHMR board for better durability.' },
@@ -449,7 +547,23 @@ export const presets = {
     { name: 'Rolling Shutter', unit: 'PCS', rate: 14500, remark: 'Per item', desc: 'Rolling shutter for kitchen cabinets.' },
     { name: 'LED Strip Light', unit: 'RFT', rate: 150, remark: 'Linear feet', desc: 'LED strip lighting for under-cabinet illumination.' },
     { name: 'Sink (Single Bowl SS)', unit: 'PCS', rate: 4500, remark: 'Per item', desc: 'Single bowl stainless steel sink.' },
-    { name: 'Sink (Double Bowl SS)', unit: 'PCS', rate: 7500, remark: 'Per item', desc: 'Double bowl stainless steel sink.' }
+    { name: 'Sink (Double Bowl SS)', unit: 'PCS', rate: 7500, remark: 'Per item', desc: 'Double bowl stainless steel sink.' },
+    { name: 'Kitchen Loft (Particle Board)', unit: 'SQFT', rate: 1250, remark: 'Approx area', desc: 'Kitchen loft with particle board construction.' },
+    { name: 'Kitchen Loft (HDHMR)', unit: 'SQFT', rate: 1500, remark: 'Approx area', desc: 'Kitchen loft with HDHMR board for better durability.' },
+    { name: 'Kitchen Woodwork (Laminate)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Complete kitchen woodwork with laminate finish.' },
+    { name: 'Innovech Tandem Drawer', unit: 'PCS', rate: 6400, remark: 'Per item', desc: 'Premium Innovech tandem drawer system.' },
+    { name: 'Grain Trolley', unit: 'PCS', rate: 7215, remark: 'Per item', desc: 'Kitchen grain trolley for storage.' },
+    { name: 'Bottle Pullout', unit: 'PCS', rate: 5520, remark: 'Per item', desc: 'Bottle pullout accessory for kitchen.' },
+    { name: 'GTPT 304 SS', unit: 'PCS', rate: 6200, remark: 'Per item', desc: 'Stainless steel kitchen accessory.' },
+    { name: 'PVC Cutlery', unit: 'PCS', rate: 1800, remark: 'Per item', desc: 'PVC cutlery organizer for drawers.' },
+    { name: 'Glass Profile Shutter', unit: 'PCS', rate: 3500, remark: 'Per item', desc: 'Glass profile shutter for kitchen cabinets.' },
+    { name: 'Wicker Basket', unit: 'PCS', rate: 4000, remark: 'Per item', desc: 'Wicker basket for kitchen storage.' },
+    { name: 'Rolling Shutter', unit: 'PCS', rate: 14500, remark: 'Per item', desc: 'Rolling shutter for kitchen cabinets.' },
+    { name: 'Pantry Unit Basic', unit: 'PCS', rate: 24500, remark: 'Per item', desc: 'Basic pantry unit for kitchen storage.' },
+    { name: 'Pantry Unit Premium', unit: 'PCS', rate: 35000, remark: 'Per item', desc: 'Premium pantry unit with advanced features.' },
+    { name: 'Dustbin', unit: 'PCS', rate: 3850, remark: 'Per item', desc: 'Kitchen dustbin with pullout mechanism.' },
+    { name: 'Detergent Holder', unit: 'PCS', rate: 1850, remark: 'Per item', desc: 'Detergent holder for kitchen sink area.' }
+  
   ],
   'UTILITY AREA': [
     { name: 'Utility Balcony Covering', unit: 'SQFT', rate: 550, remark: 'Approx area', desc: 'Utility balcony covering work with waterproofing.' },
@@ -494,7 +608,18 @@ export const presets = {
     { name: 'Shoe Cabinet (Laminate Finish)', unit: 'SQFT', rate: 1399, remark: 'With upto 1 drawer per 12 sqft', desc: 'Shoe cabinet with laminate finish and drawer storage.' },
     { name: 'Security Door', unit: 'PCS', rate: 38000, remark: 'Per item', desc: 'Security door with laminate + laser cutting/SS (304) / MS design.' },
     { name: 'Designer Door', unit: 'PCS', rate: 47500, remark: 'Per item', desc: 'Premium designer door with custom design and finish.' },
-    { name: 'Moulding', unit: 'RFT', rate: 350, remark: 'Linear feet', desc: 'Decorative moulding for walls and ceilings.' }
+    { name: 'Moulding', unit: 'RFT', rate: 350, remark: 'Linear feet', desc: 'Decorative moulding for walls and ceilings.' },
+    /* ================= CNC & FEATURE WALL DESIGNS ================= */
+    { name: 'CNC Wall Design – MDF', unit: 'SQFT', rate: 1650, remark: 'Duco paint / laminate', desc: 'Decorative CNC-cut MDF wall panel designed for dining accent wall, finished with Duco paint or laminate. Adds artistic and premium visual appeal.' },
+    { name: 'CNC Wall with Backlighting', unit: 'SQFT', rate: 1950, remark: 'LED backlit', desc: 'CNC laser-cut wall panel with integrated LED backlighting, diffuser and concealed wiring for luxury dining spaces.' },
+    { name: 'Metal CNC Wall Panel', unit: 'SQFT', rate: 3200, remark: 'Powder coated', desc: 'Laser-cut metal CNC wall panel finished with powder coating (black/gold/bronze), suitable for luxury dining areas.' },
+    { name: 'Jaali Wall Partition – Dining', unit: 'SQFT', rate: 1550, remark: 'MDF/WPC', desc: 'Decorative jaali-style partition used as dining feature wall or semi-divider.' },
+    /* ================= FEATURE & ART WALLS ================= */
+    { name: '3D Wall Panel ', unit: 'SQFT', rate: 1250, remark: 'PVC / MDF', desc: '3D textured wall panels installed on dining wall to create depth and modern aesthetics.' },
+    { name: 'Stone Cladding Wall ', unit: 'SQFT', rate: 1850, remark: 'Natural stone', desc: 'Natural stone cladding wall using slate/sandstone for premium dining backdrop.' },
+    { name: 'Backlit Marble / Onyx Wall', unit: 'SQFT', rate: 8500, remark: 'Imported stone', desc: 'Luxury translucent marble or onyx wall panel with LED backlighting and metal framing.' },
+    { name: 'PU Moulding Wall Design', unit: 'SQFT', rate: 650, remark: 'Classic panels', desc: 'Decorative PU moulding panels applied on dining wall and finished with premium paint.' },
+    
   ],
   'TV & Storage Units': [
     { name: 'TV Wall Unit Paneling with Console', unit: 'SQFT', rate: 1150, remark: 'Includes drawers, shutter, open shelves', desc: 'Complete TV wall unit with paneling and console storage.' },
@@ -505,6 +630,7 @@ export const presets = {
   ],
   'Designer Partitions': [
     { name: 'CNC Cutting + Duco Paint/Melamine', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Designer partition with CNC cutting and premium finish.' },
+    { name: 'Decorative partation + laminate finish', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Designer partition with CNC cutting and premium finish.' },
     { name: 'Glass Partition', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Modern glass partition for space division.' },
     { name: 'Metal Cutting with PVD', unit: 'SQFT', rate: 2500, remark: 'Approx area', desc: 'Premium metal partition with PVD coating.' }
   ],
@@ -529,6 +655,8 @@ export const presets = {
     { name: 'Countertop Granite/Quartz', unit: 'SQFT', rate: 250, remark: 'Installation only', desc: 'Granite or quartz countertop installation.' },
     { name: 'Dado Stone', unit: 'SQFT', rate: 250, remark: 'Installation only', desc: 'Stone dado installation for kitchen/bathroom.' },
     { name: 'Tile Installation', unit: 'SQFT', rate: 110, remark: 'Installation only', desc: 'Tile installation work.' },
+    { name: 'Tile Flooring (Chemical)', unit: 'SQFT', rate: 110, remark: 'Installation only', desc: 'Tile flooring with chemical fixing.' },
+    { name: 'Stone Flooring', unit: 'SQFT', rate: 180, remark: 'Installation only', desc: 'Stone flooring installation.' },
     { name: 'Kacha Plaster', unit: 'SQFT', rate: 45, remark: 'Approx area', desc: 'Kacha plaster work for walls.' }
   ],
   'Plumbing Work': [
@@ -542,6 +670,29 @@ export const presets = {
     { name: 'Toilet Uninstall', unit: 'PCS', rate: 4000, remark: 'Per item', desc: 'Toilet uninstallation and removal.' }
   ],
   'Bedroom Furniture': [
+     { name: 'Bed – Basic (Box Storage)', unit: 'PCS', rate: 32000, remark: 'Manual storage', desc: 'Custom bed with manual box storage, HDHMR plywood structure (Century/Greenply), laminate finish and sturdy frame.' },
+    { name: 'Bed – Hydraulic Storage', unit: 'PCS', rate: 38000, remark: 'Hydraulic lift', desc: 'Hydraulic storage bed with premium lift mechanism, HDHMR plywood base and designer headboard.' },
+    { name: 'Bed – Floating Design', unit: 'PCS', rate: 52000, remark: 'Designer look', desc: 'Floating-style bed with concealed support, laminate/veneer finish and premium craftsmanship.' },
+    { name: 'Headboard Panel – Wooden', unit: 'SQFT', rate: 650, remark: 'Laminate finish', desc: 'Wooden bed back panel using MDF/HDHMR plywood finished with laminate for accent wall behind bed.' },
+    { name: 'Headboard Panel – Upholstered', unit: 'SQFT', rate: 750, remark: 'Fabric/Leatherette', desc: 'Upholstered bed back panel with premium fabric or leatherette and foam padding.' },
+    { name: 'Headboard Panel – CNC Design', unit: 'SQFT', rate: 1650, remark: 'Duco paint', desc: 'CNC-cut MDF headboard wall design finished with Duco paint for artistic bedroom backdrop.' },
+    { name: 'Headboard Panel – Backlit CNC', unit: 'SQFT', rate: 1950, remark: 'LED backlit', desc: 'CNC laser-cut headboard panel with integrated LED backlighting and concealed wiring.' },
+    /* ================= WARDROBES ================= */
+    { name: 'Wardrobe – Hinged (Standard)', unit: 'SQFT', rate: 1150, remark: 'Laminate finish', desc: 'Hinged wardrobe with HDHMR plywood carcass, laminate shutters, internal shelves, drawers and hanging rod.' },
+    { name: 'Wardrobe – Hinged (Premium)', unit: 'SQFT', rate: 1450, remark: 'PU / Veneer', desc: 'Premium hinged wardrobe with PU or veneer finish, soft-close hinges and luxury internal fittings.' },
+    { name: 'Wardrobe – Sliding', unit: 'SQFT', rate: 1350, remark: 'Mirror / laminate', desc: 'Sliding wardrobe with aluminium channels, mirror/laminate shutters and soft-close mechanism.' },
+    { name: 'Wardrobe – Sliding Premium', unit: 'SQFT', rate: 1650, remark: 'Lacquered glass', desc: 'Premium sliding wardrobe with lacquered glass or PU shutters and smooth soft-close operation.' },
+    { name: 'Walk-in Wardrobe – Open System', unit: 'SQFT', rate: 1650, remark: 'Open shelving', desc: 'Open walk-in wardrobe system with shelves, drawers, hangers and laminate/veneer finish.' },
+    { name: 'Wardrobe Loft Storage', unit: 'SQFT', rate: 750, remark: 'Above wardrobe', desc: 'Loft storage unit above wardrobe with laminate shutters and internal shelving.' },
+    /* ================= DRESSING & STUDY ================= */
+    { name: 'Dressing Table with Mirror', unit: 'PCS', rate: 18500, remark: 'Drawer storage', desc: 'Dressing table with drawers, laminate finish and fixed mirror.' },
+    { name: 'Dressing Unit with LED Mirror', unit: 'PCS', rate: 24500, remark: 'Touch sensor', desc: 'Premium dressing unit with LED mirror, touch sensor and drawer storage.' },
+    { name: 'Study Table – Bedroom', unit: 'SQFT', rate: 1250, remark: 'Wall mounted', desc: 'Wall-mounted study table with laminate finish and cable management.' },
+    { name: 'Study Unit with Storage', unit: 'SQFT', rate: 1450, remark: 'Bookshelves', desc: 'Study unit with overhead shelves, drawers and laminate/veneer finish.' },
+    /* ================= SIDE TABLES & STORAGE ================= */
+    { name: 'Bedside Table – Single Drawer', unit: 'PCS', rate: 6500, remark: 'Soft-close', desc: 'Bedside table with one drawer and laminate finish.' },
+    { name: 'Bedside Table – Two Drawer', unit: 'PCS', rate: 8500, remark: 'Premium', desc: 'Two-drawer bedside unit with soft-close channels and premium edge banding.' },
+    { name: 'Chest of Drawers', unit: 'PCS', rate: 24500, remark: '3–5 drawers', desc: 'Chest of drawers with laminate/veneer finish for additional storage.' },
     { name: 'Wardrobe (Openable – Laminate)', unit: 'SQFT', rate: 1650, remark: 'Includes drawers, lights, rail, locks', desc: 'Complete wardrobe with laminate finish and accessories.' },
     { name: 'TV Console (Bedroom)', unit: 'PCS', rate: 1100, remark: 'Per item', desc: 'Bedroom TV console unit.' },
     { name: 'Dressing Unit (Laminate + Storage)', unit: 'SQFT', rate: 1650, remark: 'Approx area', desc: 'Dressing unit with storage and laminate finish.' },
@@ -559,6 +710,9 @@ export const presets = {
     { name: 'Light Design Ceiling', unit: 'SQFT', rate: 110, remark: 'Approx area', desc: 'False ceiling with light design patterns.' },
     { name: 'Wall Punning POP', unit: 'SQFT', rate: 30, remark: 'Approx area', desc: 'Wall punning with POP work.' },
     { name: 'AC Pelmet', unit: 'RFT', rate: 350, remark: 'Linear feet', desc: 'AC pelmet installation.' },
+     { name: 'False Ceiling – Plain Gypsum', unit: 'SQFT', rate: 135, remark: 'Saint-Gobain/USG', desc: 'Plain gypsum false ceiling with metal framework, jointing, levelling and smooth finish.' },
+    { name: 'False Ceiling – Designer Layers', unit: 'SQFT', rate: 185, remark: 'Cove + steps', desc: 'Designer gypsum ceiling with multiple layers, step profiles and cove lighting provision.' },
+    { name: 'Wooden Ceiling Panels', unit: 'SQFT', rate: 1450, remark: 'Veneer finish', desc: 'Decorative wooden ceiling panels with veneer finish and PU polish.' },
     { name: 'POP Grooves', unit: 'RFT', rate: 150, remark: 'Linear feet', desc: 'Decorative POP grooves.' }
   ],
   'Electrical Work': [
@@ -575,7 +729,38 @@ export const presets = {
     { name: 'Brick Wall Construction (4.5")', unit: 'SQFT', rate: 240, remark: 'Approx area', desc: 'Brick wall construction 4.5 inch thick.' },
     { name: 'Brick Wall Construction (9")', unit: 'SQFT', rate: 310, remark: 'Approx area', desc: 'Brick wall construction 9 inch thick.' },
     { name: 'Brick Platform (Kitchen)', unit: 'SQFT', rate: 200, remark: 'Approx area', desc: 'Brick platform for kitchen.' },
-    { name: 'Brick Platform (Bedroom)', unit: 'SQFT', rate: 200, remark: 'Approx area', desc: 'Brick platform for bedroom.' }
+    { name: 'Brick Platform (Bedroom)', unit: 'SQFT', rate: 200, remark: 'Approx area', desc: 'Brick platform for bedroom.' },
+    { name: 'Security Door (Laminate)', unit: 'PCS', rate: 38000, remark: 'Per item', desc: 'Security door with laminate + laser cutting/SS design.' },
+    { name: 'Designer Door', unit: 'PCS', rate: 47500, remark: 'Per item', desc: 'Premium designer door with custom design.' },
+    { name: 'New Laminate Door', unit: 'PCS', rate: 20000, remark: 'Per item', desc: 'New door with laminate finish.' },
+    { name: 'Veneer Door', unit: 'PCS', rate: 32000, remark: 'Duco/Melamine', desc: 'Premium veneer door with Duco or Melamine finish.' },
+    { name: 'Door Modification', unit: 'PCS', rate: 12500, remark: 'Per item', desc: 'Door modification with laminate finish.' },
+    { name: 'UPVC Window', unit: 'SQFT', rate: 550, remark: 'Approx area', desc: 'UPVC window installation.' },
+    { name: 'UPVC Window with Mesh', unit: 'SQFT', rate: 385, remark: 'Approx area', desc: 'UPVC window with mosquito mesh.' },
+    { name: 'Fixed Window', unit: 'SQFT', rate: 350, remark: 'Approx area', desc: 'Fixed window installation.' },
+    { name: 'Electrical Wiring (New)', unit: 'SQFT', rate: 170, remark: 'Approx area', desc: 'Complete new electrical wiring work.' },
+    { name: 'Electrical Wiring (Renovation)', unit: 'SQFT', rate: 90, remark: 'Approx area', desc: 'Electrical wiring renovation work.' },
+    { name: 'Plumbing Line Change', unit: 'SQFT', rate: 12000, remark: 'Per area', desc: 'Complete internal plumbing line replacement.' },
+    { name: 'CPVC Pipe Fixing', unit: 'LUMP', rate: 20000, remark: 'Lump sum', desc: 'CPVC pipe installation work.' },
+    { name: 'Drainage Work (PVC)', unit: 'PCS', rate: 10000, remark: 'Per item', desc: 'PVC drainage pipe installation.' },
+    { name: 'Demolition Work', unit: 'SQFT', rate: 25, remark: 'Approx area', desc: 'Demolition and removal work.' },
+    { name: 'Brick Wall (4.5")', unit: 'SQFT', rate: 240, remark: 'Approx area', desc: 'Brick wall construction 4.5 inch thick.' },
+    { name: 'Brick Wall (9")', unit: 'SQFT', rate: 310, remark: 'Approx area', desc: 'Brick wall construction 9 inch thick.' },
+    { name: 'Plastering', unit: 'SQFT', rate: 42, remark: 'Approx area', desc: 'Wall plastering work.' },
+    { name: 'Tile Flooring', unit: 'SQFT', rate: 110, remark: 'Installation only', desc: 'Tile flooring with chemical fixing.' },
+    { name: 'Stone Flooring', unit: 'SQFT', rate: 180, remark: 'Installation only', desc: 'Stone flooring installation.' },
+    { name: 'Wooden Flooring', unit: 'SQFT', rate: 250, remark: 'Installation only', desc: 'Wooden/laminate flooring installation.' },
+    { name: 'Wall Painting (Royale)', unit: 'SQFT', rate: 42, remark: 'Asian Paints', desc: 'Asian Paints Royale premium emulsion.' },
+    { name: 'Wall Painting (Apcolite)', unit: 'SQFT', rate: 35, remark: 'Approx area', desc: 'Apcolite premium emulsion paint.' },
+    { name: 'Enamel Paint', unit: 'SQFT', rate: 45, remark: 'Approx area', desc: 'Enamel paint for wood and metal.' },
+    { name: 'DUCO Polish', unit: 'SQFT', rate: 250, remark: 'Approx area', desc: 'Premium DUCO polish finish.' },
+    { name: 'Melamine Polish', unit: 'SQFT', rate: 250, remark: 'Approx area', desc: 'Melamine polish for furniture.' },
+    { name: 'PU Polish', unit: 'SQFT', rate: 450, remark: 'ICA/Sirca', desc: 'Premium PU polish finish.' },
+    { name: 'Wallpaper', unit: 'SQFT', rate: 85, remark: 'Material extra', desc: 'Wallpaper installation.' },
+    { name: 'Texture Paint', unit: 'SQFT', rate: 65, remark: 'Approx area', desc: 'Texture paint for walls.' },
+    { name: 'Stencil Design', unit: 'SQFT', rate: 55, remark: 'Approx area', desc: 'Stencil design on walls.' },
+    { name: 'CUSTOM WORK', unit: 'SQFT', rate: 2250, remark: 'Approx area', desc: 'Custom interior work as per requirements.' }
+  
   ],
   'Painting': [
     { name: 'Asian Paints Royale', unit: 'SQFT', rate: 42, remark: 'Approx area', desc: 'Asian Paints Royale premium emulsion.' },
@@ -594,6 +779,29 @@ export const presets = {
     { name: 'Fixed Window', unit: 'SQFT', rate: 350, remark: 'Approx area', desc: 'Fixed window installation.' }
   ],
   'Furniture': [
+     { name: 'Bed – Basic (Box Storage)', unit: 'PCS', rate: 32000, remark: 'Manual storage', desc: 'Custom bed with manual box storage, HDHMR plywood structure (Century/Greenply), laminate finish and sturdy frame.' },
+    { name: 'Bed – Hydraulic Storage', unit: 'PCS', rate: 38000, remark: 'Hydraulic lift', desc: 'Hydraulic storage bed with premium lift mechanism, HDHMR plywood base and designer headboard.' },
+    { name: 'Bed – Floating Design', unit: 'PCS', rate: 52000, remark: 'Designer look', desc: 'Floating-style bed with concealed support, laminate/veneer finish and premium craftsmanship.' },
+    { name: 'Headboard Panel – Wooden', unit: 'SQFT', rate: 650, remark: 'Laminate finish', desc: 'Wooden bed back panel using MDF/HDHMR plywood finished with laminate for accent wall behind bed.' },
+    { name: 'Headboard Panel – Upholstered', unit: 'SQFT', rate: 750, remark: 'Fabric/Leatherette', desc: 'Upholstered bed back panel with premium fabric or leatherette and foam padding.' },
+    { name: 'Headboard Panel – CNC Design', unit: 'SQFT', rate: 1650, remark: 'Duco paint', desc: 'CNC-cut MDF headboard wall design finished with Duco paint for artistic bedroom backdrop.' },
+    { name: 'Headboard Panel – Backlit CNC', unit: 'SQFT', rate: 1950, remark: 'LED backlit', desc: 'CNC laser-cut headboard panel with integrated LED backlighting and concealed wiring.' },
+    /* ================= WARDROBES ================= */
+    { name: 'Wardrobe – Hinged (Standard)', unit: 'SQFT', rate: 1150, remark: 'Laminate finish', desc: 'Hinged wardrobe with HDHMR plywood carcass, laminate shutters, internal shelves, drawers and hanging rod.' },
+    { name: 'Wardrobe – Hinged (Premium)', unit: 'SQFT', rate: 1450, remark: 'PU / Veneer', desc: 'Premium hinged wardrobe with PU or veneer finish, soft-close hinges and luxury internal fittings.' },
+    { name: 'Wardrobe – Sliding', unit: 'SQFT', rate: 1350, remark: 'Mirror / laminate', desc: 'Sliding wardrobe with aluminium channels, mirror/laminate shutters and soft-close mechanism.' },
+    { name: 'Wardrobe – Sliding Premium', unit: 'SQFT', rate: 1650, remark: 'Lacquered glass', desc: 'Premium sliding wardrobe with lacquered glass or PU shutters and smooth soft-close operation.' },
+    { name: 'Walk-in Wardrobe – Open System', unit: 'SQFT', rate: 1650, remark: 'Open shelving', desc: 'Open walk-in wardrobe system with shelves, drawers, hangers and laminate/veneer finish.' },
+    { name: 'Wardrobe Loft Storage', unit: 'SQFT', rate: 750, remark: 'Above wardrobe', desc: 'Loft storage unit above wardrobe with laminate shutters and internal shelving.' },
+    /* ================= DRESSING & STUDY ================= */
+    { name: 'Dressing Table with Mirror', unit: 'PCS', rate: 18500, remark: 'Drawer storage', desc: 'Dressing table with drawers, laminate finish and fixed mirror.' },
+    { name: 'Dressing Unit with LED Mirror', unit: 'PCS', rate: 24500, remark: 'Touch sensor', desc: 'Premium dressing unit with LED mirror, touch sensor and drawer storage.' },
+    { name: 'Study Table – Bedroom', unit: 'SQFT', rate: 1250, remark: 'Wall mounted', desc: 'Wall-mounted study table with laminate finish and cable management.' },
+    { name: 'Study Unit with Storage', unit: 'SQFT', rate: 1450, remark: 'Bookshelves', desc: 'Study unit with overhead shelves, drawers and laminate/veneer finish.' },
+    /* ================= SIDE TABLES & STORAGE ================= */
+    { name: 'Bedside Table – Single Drawer', unit: 'PCS', rate: 6500, remark: 'Soft-close', desc: 'Bedside table with one drawer and laminate finish.' },
+    { name: 'Bedside Table – Two Drawer', unit: 'PCS', rate: 8500, remark: 'Premium', desc: 'Two-drawer bedside unit with soft-close channels and premium edge banding.' },
+    { name: 'Chest of Drawers', unit: 'PCS', rate: 24500, remark: '3–5 drawers', desc: 'Chest of drawers with laminate/veneer finish for additional storage.' },
     { name: 'Sofa (per seat)', unit: 'PCS', rate: 12500, remark: 'Per seat', desc: 'Premium sofa seating.' },
     { name: 'Centre Table (Glass)', unit: 'PCS', rate: 27000, remark: 'Per item', desc: 'Centre table with glass top.' },
     { name: 'Centre Table (Stone)', unit: 'PCS', rate: 32000, remark: 'Per item', desc: 'Centre table with stone top.' },

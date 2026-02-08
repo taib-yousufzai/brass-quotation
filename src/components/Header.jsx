@@ -45,9 +45,9 @@ function Header({ formData, setFormData, theme, setTheme, currency, setCurrency,
   return (
     <header className="header">
       <div className="brand">
-        <div className="logo">MQ</div>
+        <div className="logo">BS</div>
         <div className="brand-text">
-          <h1>Lifeasy Interior</h1>
+          <h1>Brass Space Interior</h1>
           <p>Design & Build Solutions</p>
         </div>
       </div>

@@ -7,7 +7,7 @@ import ItemForm from '../components/ItemForm'
 import QuotePreview from '../components/QuotePreview'
 import Totals from '../components/Totals'
 import Actions from '../components/Actions'
-import { exportToPDF } from '../utils/pdfExport'
+import { exportToPDF } from '../utils/pdfExport' // Optimized for smaller file sizes
 import { saveQuotation, loadQuotation, testFirebaseConnection } from '../utils/dbOperations'
 import { copyQuotationToBuilder } from '../utils/copyQuotationService'
 import { exportToExcel, importFromExcel } from '../utils/excelHelpers'

@@ -222,7 +222,7 @@ function ViewQuotation() {
         <div className="quote-header-preview">
           <div className="company-info">
             <div>
-              <h2>Lifeasy Interior</h2>
+              <h2>Brass Space Interior</h2>
               <p>Design & Build Solutions</p>
             </div>
           </div>
@@ -478,7 +478,7 @@ function ViewQuotation() {
             </div>
             <div className="bank-item">
               <span className="bank-label">Account Name:</span>
-              <span className="bank-value">Lifeasy Interior</span>
+              <span className="bank-value">Brass Space Interior</span>
             </div>
             <div className="bank-item">
               <span className="bank-label">Account Number:</span>
@@ -509,13 +509,13 @@ function ViewQuotation() {
           <div className="signature-box">
             <div className="signature-line"></div>
             <p className="signature-label">Authorized Signatory</p>
-            <p className="signature-date">For Lifeasy Interior</p>
+            <p className="signature-date">For Brass Space Interior</p>
           </div>
         </div>
 
         {/* Footer */}
         <div className="quotation-footer">
-          <p>THANKYOU FOR CHOOSING LIFEASY INTERIOR</p>
+          <p>THANKYOU FOR CHOOSING BRASS SPACE INTERIOR</p>
           <p className="footer-slogan" style={{ fontSize: '14px' }}>Your space, your story—beautifully designed.</p>
         </div>
       </div>

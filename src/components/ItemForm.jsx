@@ -17,6 +17,7 @@ function ItemForm({ addItem, staffMode }) {
   const sections = [
     'LIVING AREA',
     'DINING AREA',
+    'Master Bedroom',
     'BED ROOM 1',
     'BED ROOM 2',
     'BED ROOM 3',
@@ -25,6 +26,18 @@ function ItemForm({ addItem, staffMode }) {
     'UTILITY AREA',
     'WASHROOM',
     'TEMPLE AREA',
+    'Wall Beautification',
+    'TV & Storage Units',
+    'Designer Partitions',
+    'Plumbing Work',
+    'Stone Installation',
+    'Vanity',
+    'POP Work / False Ceiling',
+    'Electrical Work',
+    'Civil & Flooring',
+    'Painting',
+    'Doors & Windows',
+    'Furniture',
     'OTHER'
   ]
 
