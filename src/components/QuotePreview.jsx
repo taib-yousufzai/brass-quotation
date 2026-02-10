@@ -145,8 +145,8 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
           </label>
         </div>
       </div>
-      <div className="quote" id="previewArea" style={{ position: 'relative' }}>
-        <div className="quote-header-preview">
+      <div className="quote" id="quoteContent" style={{ position: 'relative' }}>
+        <div className="quote-header-preview" id="section-hdr">
           <div className="company-info">
             <div>
               <h2 contentEditable suppressContentEditableWarning>Brass Space Interior Solution</h2>
@@ -158,12 +158,12 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
             <div><strong>Date:</strong> <span contentEditable suppressContentEditableWarning>{formData.date || '-'}</span></div>
           </div>
         </div>
-        <div className="client-info-preview">
+        <div className="client-info-preview" id="section-client">
           <div><strong>Client:</strong> <span contentEditable suppressContentEditableWarning>{formData.clientName || '-'}</span></div>
           <div><strong>Location:</strong> <span contentEditable suppressContentEditableWarning>{formData.location || '-'}</span></div>
           <div><strong>Project:</strong> <span contentEditable suppressContentEditableWarning>{formData.projectTitle || '-'}</span></div>
         </div>
-        <table>
+        <table id="section-table">
           <thead>
             <tr>
               <th>S.No</th>
@@ -320,7 +320,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
         </table>
 
         {/* Enhanced Summary Section */}
-        <div className="quotation-summary">
+        <div className="quotation-summary" id="section-summary">
           <div className="summary-grid">
             <div className="summary-section">
               <h4><FaCalculator /> Calculation Breakdown</h4>
@@ -390,7 +390,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
 
         {/* Material Description Specifications */}
         {visibleSections.materialDescription && (
-          <div className="specifications-section">
+          <div className="specifications-section" id="section-specs">
             <h3 className="section-title">material discription</h3>
             <table className="specifications-table">
               <tbody>
@@ -461,7 +461,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
 
         {/* Payment Schedule */}
         {visibleSections.paymentSchedule && (
-          <div className="payment-section">
+          <div className="payment-section" id="section-payment">
             <h3 className="section-title">PAYMENT SCHEDULE</h3>
             <div className="payment-table">
               <div className="payment-row payment-header">
@@ -486,7 +486,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
 
         {/* Warranty and Terms */}
         {visibleSections.warranty && (
-          <div className="warranty-section">
+          <div className="warranty-section" id="section-warranty">
             <h3 className="section-title">WARRANTY AND DISCLAIMER OF WARRANTY-WOOD WORK</h3>
             <h4 className="subsection-title">TERMS & CONDITIONS</h4>
 
@@ -528,7 +528,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
 
         {/* Bank Details */}
         {visibleSections.bankDetails && (
-          <div className="bank-section">
+          <div className="bank-section" id="section-bank">
             <h3 className="section-title">BANK DETAILS FOR PAYMENT</h3>
             <div className="bank-details-grid">
               <div className="bank-item">
@@ -560,7 +560,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
         )}
 
         {/* Signature Section */}
-        <div className="signature-section">
+        <div className="signature-section" id="section-signature">
           <div className="signature-box">
             <div className="signature-line"></div>
             <p className="signature-label">Customer Signature</p>
@@ -585,27 +585,25 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
         <div className="footer-content">
           <div className="footer-overlay"></div>
           <div className="footer-main">
-            <h1 className="footer-title">Join the BrassSpace Family</h1>
+            <h1 className="footer-title">Join The Family.</h1>
 
             <div className="footer-contact-grid">
               <div className="footer-contact-item">
-                <span className="footer-contact-label">CONTACT US:</span>
+                <span className="footer-contact-label">Direct Contact</span>
                 <span className="footer-contact-value" contentEditable suppressContentEditableWarning>+91 9217785798, 9217758190</span>
               </div>
               <div className="footer-contact-item">
-                <span className="footer-contact-label">GMAIL:</span>
+                <span className="footer-contact-label">Official Email</span>
                 <span className="footer-contact-value" contentEditable suppressContentEditableWarning>BRASS.SPACE.INDIA@GMAIL.COM</span>
               </div>
               <div className="footer-contact-item">
-                <span className="footer-contact-label">WEBSITE:</span>
+                <span className="footer-contact-label">Website Portfolio</span>
                 <span className="footer-contact-value" contentEditable suppressContentEditableWarning>BRASSSPACE.COM</span>
               </div>
             </div>
 
             <p className="footer-description">
-              A perfect blend of modern and classic elements,<br />
-              featuring cozy seating and statement pieces that<br />
-              create a warm and inviting ambiance.
+              A perfect blend of modern and classic elements, featuring cozy seating and statement pieces that create a warm and inviting ambiance.
             </p>
 
             <div className="footer-branding">

@@ -7,15 +7,18 @@ import { getOptimalSettings, CANVAS_CAPTURE_CONFIG } from './pdfOptimizationConf
 const loadImageAsBase64 = (url, quality = 0.8) => {
   return new Promise((resolve, reject) => {
     const img = new Image()
-    // Remove crossOrigin for local assets as requested
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = img.width
-      canvas.height = img.height
-      const ctx = canvas.getContext('2d')
-      ctx.drawImage(img, 0, 0)
-      // Use JPEG compression for smaller file size
-      resolve(canvas.toDataURL('image/jpeg', quality))
+    img.onload = async () => {
+      try {
+        if ('decode' in img) await img.decode()
+        const canvas = document.createElement('canvas')
+        canvas.width = img.width
+        canvas.height = img.height
+        const ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0)
+        resolve(canvas.toDataURL('image/jpeg', quality))
+      } catch (e) {
+        reject(e)
+      }
     }
     img.onerror = reject
     img.src = url
@@ -23,68 +26,23 @@ const loadImageAsBase64 = (url, quality = 0.8) => {
 }
 
 export const exportToPDF = async (formData, rows, staffMode, currency, pageSize, orientation) => {
-  const previewArea = document.getElementById('previewArea')
-  if (!previewArea) return
+  const quoteContent = document.getElementById('quoteContent')
+  if (!quoteContent) return
 
-  // Get optimal settings for standard quality (smaller file size)
-  const settings = getOptimalSettings('standard')
+  // High quality settings
+  const SCALE = 2
+  const QUALITY = 0.95
 
-  // Ensure rows are consolidated by section before export
-  const consolidatedRows = consolidateItemsBySection(rows)
-
-  // Hide actual columns for client mode
+  // Hide actual columns and no-print elements
   if (!staffMode) {
     document.querySelectorAll('.actual-col').forEach(el => el.style.display = 'none')
   }
-
-  // Hide action columns for PDF export
   document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none')
 
-  // Create wrapper
-  const wrapper = document.createElement('div')
-  wrapper.style.padding = '10px'
-  wrapper.style.background = '#fff'
-  wrapper.style.width = '100%'
-  wrapper.style.boxSizing = 'border-box'
-
-  // Clone the preview area
-  const clonedArea = previewArea.cloneNode(true)
-
-  // Remove action columns from the clone
-  clonedArea.querySelectorAll('.no-print').forEach(el => el.remove())
-
-  wrapper.appendChild(clonedArea)
-  document.body.appendChild(wrapper)
-
   try {
-    const headerImg1 = await loadImageAsBase64(encodeURI('/quotation header page 1.png'), 0.8)
-    const headerImg2 = await loadImageAsBase64(encodeURI('/quotation header page 2.png'), 0.8)
+    const headerImg1 = await loadImageAsBase64(encodeURI('/quotation header page 1.png'), 0.9)
 
-    // Capture dynamic footer instead of loading image
-    const footerArea = document.getElementById('footerArea')
-    let footerImg = null
-    if (footerArea) {
-      const footerCanvas = await html2canvas(footerArea, {
-        ...CANVAS_CAPTURE_CONFIG.STANDARD,
-        scale: 2, // High resolution for footer
-        useCORS: true,
-        logging: false
-      })
-      footerImg = footerCanvas.toDataURL('image/jpeg', 0.8)
-    }
-
-    const canvas = await html2canvas(wrapper, {
-      ...CANVAS_CAPTURE_CONFIG.STANDARD,
-      scrollY: 0,
-      windowWidth: wrapper.scrollWidth,
-    })
-
-    document.body.removeChild(wrapper)
-
-    // Convert to JPEG for smaller file size
-    const contentImg = canvas.toDataURL('image/jpeg', settings.jpegQuality)
-
-    // Enable compression in jsPDF and use specified settings
+    // Setup PDF
     const pdf = new jsPDF({
       orientation: orientation,
       unit: 'mm',
@@ -94,46 +52,101 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
 
     const pageWidth = pdf.internal.pageSize.getWidth()
     const pageHeight = pdf.internal.pageSize.getHeight()
+    const margin = 10 // 10mm margin
+    const contentWidth = pageWidth - (2 * margin)
+    const maxPageHeight = pageHeight - (2 * margin)
 
-    // PAGE 1: Full page header 1 (JPEG compressed)
+    // PAGE 1: Cover
     pdf.addImage(headerImg1, 'JPEG', 0, 0, pageWidth, pageHeight, undefined, 'FAST')
 
-    // PAGE 2: Full page header 2 (JPEG compressed)
+    // START CONTENT PAGES
     pdf.addPage()
-    pdf.addImage(headerImg2, 'JPEG', 0, 0, pageWidth, pageHeight, undefined, 'FAST')
+    let currentY = margin
 
-    // MIDDLE PAGES: Quotation content
-    const imgProps = pdf.getImageProperties(contentImg)
-    const imgWidth = pageWidth
-    const imgHeight = (imgProps.height * pageWidth) / imgProps.width
+    // Sections to capture
+    const sectionIds = [
+      'section-hdr',
+      'section-client',
+      'section-table',
+      'section-summary',
+      'section-specs',
+      'section-payment',
+      'section-warranty',
+      'section-bank',
+      'section-signature'
+    ]
 
-    let heightLeft = imgHeight
-    let position = 0
+    for (const id of sectionIds) {
+      const el = document.getElementById(id)
+      if (!el) continue
 
-    // Add first content page with JPEG compression
-    pdf.addPage()
-    pdf.addImage(contentImg, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST')
-    heightLeft -= pageHeight
+      const canvas = await html2canvas(el, {
+        scale: SCALE,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff'
+      })
 
-    // Add additional content pages if needed
-    while (heightLeft > 0) {
-      position -= pageHeight
-      pdf.addPage()
-      pdf.addImage(contentImg, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST')
-      heightLeft -= pageHeight
+      const imgData = canvas.toDataURL('image/jpeg', QUALITY)
+      const props = pdf.getImageProperties(imgData)
+      const imgH = (props.height * contentWidth) / props.width
+
+      // If section is too tall for a FRESH page (extremely unlikely but safe check)
+      if (imgH > maxPageHeight) {
+        // Special case for the table - if it's too long, we might need a different strategy
+        // But for now, let's just add it and it might overflow (or split if we slice)
+        // Better: capturing just the table and slicing it if needed
+        if (id === 'section-table') {
+          let heightLeft = imgH
+          let slicePos = 0
+          while (heightLeft > 0) {
+            const sliceH = Math.min(heightLeft, maxPageHeight - (currentY - margin))
+            pdf.addImage(imgData, 'JPEG', margin, currentY - (slicePos * (imgH / imgH)), contentWidth, imgH, undefined, 'FAST')
+            // This slicing is complex with addImage.
+            // Simplified: Add page if doesn't fit
+            if (currentY + imgH > pageHeight - margin) {
+              pdf.addPage()
+              currentY = margin
+            }
+            pdf.addImage(imgData, 'JPEG', margin, currentY, contentWidth, imgH, undefined, 'FAST')
+            break; // Stop for table for now to avoid multiple loops
+          }
+        } else {
+          // Standard section
+          if (currentY + imgH > pageHeight - margin) {
+            pdf.addPage()
+            currentY = margin
+          }
+          pdf.addImage(imgData, 'JPEG', margin, currentY, contentWidth, imgH, undefined, 'FAST')
+          currentY += imgH + 5 // 5mm spacing
+        }
+      } else {
+        // Section fits or needs new page
+        if (currentY + imgH > pageHeight - margin) {
+          pdf.addPage()
+          currentY = margin
+        }
+        pdf.addImage(imgData, 'JPEG', margin, currentY, contentWidth, imgH, undefined, 'FAST')
+        currentY += imgH + 5 // 5mm spacing
+      }
     }
 
-    // LAST PAGE: Full page footer (JPEG compressed)
-    pdf.addPage()
-    pdf.addImage(footerImg, 'JPEG', 0, 0, pageWidth, pageHeight, undefined, 'FAST')
+    // LAST PAGE: Footer
+    const footerArea = document.getElementById('footerArea')
+    if (footerArea) {
+      const footerCanvas = await html2canvas(footerArea, { scale: SCALE, useCORS: true })
+      const footerImg = footerCanvas.toDataURL('image/jpeg', QUALITY)
+      pdf.addPage()
+      pdf.addImage(footerImg, 'JPEG', 0, 0, pageWidth, pageHeight, undefined, 'FAST')
+    }
 
     pdf.save(`${formData.docNo || 'Quotation'}.pdf`)
   } catch (err) {
     console.error('PDF export error:', err)
-    alert('Error exporting PDF. Please ensure header and footer images are available.')
+    alert('Error exporting PDF. Please check console for details.')
   }
 
-  // Restore column visibility
+  // Restore
   if (staffMode) {
     document.querySelectorAll('.actual-col').forEach(el => el.style.display = '')
   }
