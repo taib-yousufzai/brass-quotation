@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 import { getAnalytics } from "firebase/analytics";
 
-// Firebase configuration for Brass Space Interior
+// Firebase configuration for Brass Space Interior Solution
 const firebaseConfig = {
   apiKey: "AIzaSyB-Mjw16FT11D8b5US5YpV5bMjQADvNav0",
   authDomain: "brass-libs-4053d.firebaseapp.com",
