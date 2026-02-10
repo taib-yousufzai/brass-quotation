@@ -580,12 +580,48 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
         </div>
       </div>
 
-      {/* Footer Page - Hidden on screen, visible in print */}
-      <div className="footer-page">
-        <img
-          src="/quotation footer.png"
-          alt="Footer Page"
-        />
+      {/* Dynamic Footer Page - Hidden on screen, visible in print/PDF */}
+      <div className="footer-page" id="footerArea">
+        <div className="footer-content">
+          <div className="footer-overlay"></div>
+          <div className="footer-main">
+            <h1 className="footer-title">Join the BrassSpace Family</h1>
+
+            <div className="footer-contact-grid">
+              <div className="footer-contact-item">
+                <span className="footer-contact-label">CONTACT US:</span>
+                <span className="footer-contact-value" contentEditable suppressContentEditableWarning>+91 9217785798, 9217758190</span>
+              </div>
+              <div className="footer-contact-item">
+                <span className="footer-contact-label">GMAIL:</span>
+                <span className="footer-contact-value" contentEditable suppressContentEditableWarning>BRASS.SPACE.INDIA@GMAIL.COM</span>
+              </div>
+              <div className="footer-contact-item">
+                <span className="footer-contact-label">WEBSITE:</span>
+                <span className="footer-contact-value" contentEditable suppressContentEditableWarning>BRASSSPACE.COM</span>
+              </div>
+            </div>
+
+            <p className="footer-description">
+              A perfect blend of modern and classic elements,<br />
+              featuring cozy seating and statement pieces that<br />
+              create a warm and inviting ambiance.
+            </p>
+
+            <div className="footer-branding">
+              <div className="footer-logo-circle">
+                <div className="footer-arrow">↗</div>
+              </div>
+              <div className="footer-brand-info">
+                <h2 className="footer-brand-name">BRASS SPACE INTERIOR</h2>
+                <p className="footer-brand-tagline">WHERE QUALITY MEETS COMMITMENT</p>
+              </div>
+              <div className="footer-site-btn">
+                BRASSSPACE.COM
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

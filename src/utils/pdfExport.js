@@ -57,11 +57,21 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
   document.body.appendChild(wrapper)
 
   try {
-    // Load header and footer images with JPEG compression (80% quality)
-    // Use encodeURI for handling spaces in filenames
     const headerImg1 = await loadImageAsBase64(encodeURI('/quotation header page 1.png'), 0.8)
     const headerImg2 = await loadImageAsBase64(encodeURI('/quotation header page 2.png'), 0.8)
-    const footerImg = await loadImageAsBase64(encodeURI('/quotation footer.png'), 0.8)
+
+    // Capture dynamic footer instead of loading image
+    const footerArea = document.getElementById('footerArea')
+    let footerImg = null
+    if (footerArea) {
+      const footerCanvas = await html2canvas(footerArea, {
+        ...CANVAS_CAPTURE_CONFIG.STANDARD,
+        scale: 2, // High resolution for footer
+        useCORS: true,
+        logging: false
+      })
+      footerImg = footerCanvas.toDataURL('image/jpeg', 0.8)
+    }
 
     const canvas = await html2canvas(wrapper, {
       ...CANVAS_CAPTURE_CONFIG.STANDARD,

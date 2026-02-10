@@ -53,7 +53,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   background: var(--lt);
   color: var(--ink);
@@ -121,7 +122,9 @@ html, body {
   flex-wrap: wrap;
 }
 
-.modern-input, .modern-select, .modern-textarea {
+.modern-input,
+.modern-select,
+.modern-textarea {
   padding: 10px 12px;
   border: 2px solid var(--bd);
   border-radius: var(--radius-sm);
@@ -138,13 +141,17 @@ html, body {
   color: #0b1b3a;
 }
 
-.modern-input:focus, .modern-select:focus, .modern-textarea:focus {
+.modern-input:focus,
+.modern-select:focus,
+.modern-textarea:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(31, 59, 115, 0.1);
 }
 
-.btn-primary, .btn-secondary, .btn-danger {
+.btn-primary,
+.btn-secondary,
+.btn-danger {
   padding: 10px 16px;
   border: none;
   border-radius: var(--radius-sm);
@@ -431,7 +438,8 @@ tbody tr:hover {
   text-align: right;
 }
 
-.delete-btn, .duplicate-btn {
+.delete-btn,
+.duplicate-btn {
   padding: 6px 10px;
   border: none;
   border-radius: 6px;
@@ -480,7 +488,7 @@ tbody tr:hover {
   .layout {
     grid-template-columns: 1fr;
   }
-  
+
   .controls {
     position: relative;
     top: 0;
@@ -489,6 +497,7 @@ tbody tr:hover {
 }
 
 @media print {
+
   /* Hide UI elements */
   .header,
   .controls,
@@ -501,19 +510,19 @@ tbody tr:hover {
   .quote-header {
     display: none !important;
   }
-  
+
   /* Hide admin/staff columns */
   .actual-col {
     display: none !important;
   }
-  
+
   /* Show only the quote */
   .layout {
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   .quote-wrapper {
     width: 100% !important;
     margin: 0 !important;
@@ -521,14 +530,14 @@ tbody tr:hover {
     box-shadow: none !important;
     border: none !important;
   }
-  
+
   .quote {
     width: 100% !important;
     padding: 20px !important;
     box-shadow: none !important;
     margin: 0 !important;
   }
-  
+
   /* Ensure proper page breaks */
   .quotation-summary,
   .payment-section,
@@ -537,41 +546,41 @@ tbody tr:hover {
   .signature-section {
     page-break-inside: avoid;
   }
-  
+
   /* Optimize table for print */
   table {
     page-break-inside: auto;
   }
-  
+
   tr {
     page-break-inside: avoid;
     page-break-after: auto;
   }
-  
+
   /* Remove backgrounds and shadows for print */
   * {
     background: white !important;
     box-shadow: none !important;
   }
-  
+
   /* Keep borders visible */
   table,
   th,
   td {
     border-color: #000 !important;
   }
-  
+
   /* Page setup */
   body {
     margin: 0;
     padding: 0;
   }
-  
+
   @page {
     margin: 0;
     size: auto;
   }
-  
+
   /* Add page breaks for header pages */
   .quote::before {
     content: '';
@@ -583,9 +592,142 @@ tbody tr:hover {
     background-repeat: no-repeat;
     background-position: center;
   }
-  
-  /* Note: Browser print doesn't support multiple ::before, so header page 2 
-     will only appear in PDF download. For full control, use PDF download. */
+
+  .footer-page {
+    display: block !important;
+    page-break-before: always;
+  }
+}
+
+/* Dynamic Footer Page Styling */
+.footer-page {
+  width: 210mm;
+  height: 297mm;
+  display: none;
+  /* Hidden on screen by default */
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.footer-content {
+  width: 100%;
+  height: 100%;
+  background-image: url('/footer-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60mm 20mm 20mm 20mm;
+  color: #fff;
+}
+
+.footer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 1;
+}
+
+.footer-main {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 30px;
+  max-width: 600px;
+  text-transform: capitalize;
+}
+
+.footer-contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 50px;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  padding-top: 30px;
+  max-width: 500px;
+}
+
+.footer-contact-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.footer-contact-label {
+  opacity: 0.8;
+}
+
+.footer-description {
+  margin-top: auto;
+  font-size: 24px;
+  line-height: 1.4;
+  opacity: 0.9;
+  border-left: 4px solid #fff;
+  padding-left: 20px;
+  margin-bottom: 100px;
+}
+
+.footer-branding {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding-top: 40px;
+}
+
+.footer-logo-circle {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-arrow {
+  font-size: 30px;
+}
+
+.footer-brand-info {
+  flex: 1;
+}
+
+.footer-brand-name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.footer-brand-tagline {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.footer-site-btn {
+  background: #c19a6b;
+  color: #000;
+  padding: 15px 40px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 
@@ -744,12 +886,12 @@ tbody tr:hover {
   .client-info-preview {
     grid-template-columns: 1fr;
   }
-  
+
   .quote-header-preview {
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .quote-meta-preview {
     text-align: left;
   }
@@ -757,7 +899,9 @@ tbody tr:hover {
 
 
 /* Button Alignment Fixes */
-.btn-primary, .btn-secondary, .btn-danger {
+.btn-primary,
+.btn-secondary,
+.btn-danger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -771,7 +915,7 @@ tbody tr:hover {
 }
 
 /* Ensure proper spacing in forms */
-.form-group > * {
+.form-group>* {
   width: 100%;
 }
 
@@ -1136,21 +1280,21 @@ tbody tr:hover {
   .no-print {
     display: none !important;
   }
-  
+
   .quotation-summary {
     page-break-inside: avoid;
   }
-  
+
   .summary-grid {
     grid-template-columns: 1fr;
   }
-  
+
   /* Ensure action buttons are hidden */
   .delete-btn,
   .duplicate-btn {
     display: none !important;
   }
-  
+
   /* Hide action column header and cells */
   th.no-print,
   td.no-print {
@@ -1163,7 +1307,7 @@ tbody tr:hover {
   .summary-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .grand-total-value {
     font-size: 28px;
   }
@@ -1173,15 +1317,15 @@ tbody tr:hover {
   .quotation-summary {
     padding: 16px;
   }
-  
+
   .summary-section {
     padding: 16px;
   }
-  
+
   .grand-total-value {
     font-size: 24px;
   }
-  
+
   .summary-item {
     font-size: 13px;
   }
@@ -1193,6 +1337,7 @@ tbody tr:hover {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1203,12 +1348,29 @@ tbody tr:hover {
   animation: slideIn 0.3s ease-out;
 }
 
-.summary-item:nth-child(1) { animation-delay: 0.05s; }
-.summary-item:nth-child(2) { animation-delay: 0.1s; }
-.summary-item:nth-child(3) { animation-delay: 0.15s; }
-.summary-item:nth-child(4) { animation-delay: 0.2s; }
-.summary-item:nth-child(5) { animation-delay: 0.25s; }
-.summary-item:nth-child(6) { animation-delay: 0.3s; }
+.summary-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.summary-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.summary-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.summary-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.summary-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.summary-item:nth-child(6) {
+  animation-delay: 0.3s;
+}
 
 /* Hover effect for grand total box */
 .grand-total-box {
@@ -1350,7 +1512,7 @@ tbody tr:hover {
   .payment-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .signature-section {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1361,12 +1523,12 @@ tbody tr:hover {
   .payment-section {
     padding: 16px;
   }
-  
+
   .payment-terms,
   .bank-details {
     padding: 16px;
   }
-  
+
   .payment-item,
   .bank-item {
     flex-direction: column;
@@ -1377,12 +1539,13 @@ tbody tr:hover {
 
 /* ===== PRINT STYLES ===== */
 @media print {
+
   .payment-section,
   .signature-section,
   .quotation-footer {
     page-break-inside: avoid;
   }
-  
+
   .signature-line {
     border-bottom: 1px solid #000;
   }
@@ -1394,6 +1557,7 @@ tbody tr:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1635,17 +1799,18 @@ tfoot td {
 
 /* Print-specific bold text */
 @media print {
+
   .quote,
   .quote * {
     color: #000000 !important;
     font-weight: 600 !important;
   }
-  
+
   thead th {
     color: #ffffff !important;
     font-weight: 800 !important;
   }
-  
+
   strong,
   .summary-value,
   .grand-total-value,
@@ -1654,8 +1819,10 @@ tfoot td {
   .signature-label {
     font-weight: 800 !important;
   }
-  
-  h2, h3, h4 {
+
+  h2,
+  h3,
+  h4 {
     font-weight: 800 !important;
     color: #000000 !important;
   }
@@ -1850,16 +2017,16 @@ tfoot td {
   .payment-row {
     grid-template-columns: 1fr;
   }
-  
+
   .payment-col {
     border-right: none;
     border-bottom: 1px solid #000000;
   }
-  
+
   .payment-col:last-child {
     border-bottom: none;
   }
-  
+
   .bank-details-grid {
     grid-template-columns: 1fr;
   }
@@ -1867,44 +2034,45 @@ tfoot td {
 
 /* ===== PRINT OPTIMIZATION ===== */
 @media print {
+
   .payment-section,
   .warranty-section,
   .bank-section {
     page-break-inside: avoid;
     border: 2px solid #000000 !important;
   }
-  
+
   .section-title {
     background: #ffffff !important;
     color: #000000 !important;
     border-bottom: 3px solid #000000 !important;
   }
-  
+
   .subsection-title {
     background: #ffffff !important;
     color: #000000 !important;
     border-bottom: 2px solid #000000 !important;
   }
-  
+
   .payment-header {
     background: #ffffff !important;
     color: #000000 !important;
     border-bottom: 3px solid #000000 !important;
   }
-  
+
   thead th {
     background: #f5f5f5 !important;
     color: #000000 !important;
     border-bottom: 3px solid #000000 !important;
   }
-  
+
   .payment-col,
   .term-item,
   .bank-item {
     color: #000000 !important;
     font-weight: 600 !important;
   }
-  
+
   .term-item strong,
   .bank-label,
   .bank-value {
@@ -2016,6 +2184,7 @@ td[contentEditable="true"]:focus {
 
 /* Print: hide editable indicators */
 @media print {
+
   [contentEditable="true"]:hover,
   [contentEditable="true"]:focus {
     background: transparent !important;
@@ -2133,7 +2302,7 @@ td[contentEditable="true"]:focus {
   .specifications-section {
     page-break-inside: avoid;
   }
-  
+
   .specifications-table td[contentEditable="true"]:hover,
   .specifications-table td[contentEditable="true"]:focus {
     background: transparent !important;
@@ -2146,15 +2315,15 @@ td[contentEditable="true"]:focus {
   .specifications-table {
     font-size: 11px;
   }
-  
+
   .spec-label {
     width: 120px;
   }
-  
+
   .spec-value {
     width: 150px;
   }
-  
+
   .spec-measurement {
     width: 60px;
   }
@@ -2220,7 +2389,7 @@ td[contentEditable="true"]:focus {
     border-top: 2px solid #000000 !important;
     border-bottom: 2px solid #000000 !important;
   }
-  
+
   .section-header-cell {
     color: #000000 !important;
   }
@@ -2295,52 +2464,52 @@ input[type="number"] {
   .header {
     padding: 16px;
   }
-  
+
   .doc-meta {
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .meta-group {
     width: 100%;
     flex-wrap: wrap;
   }
-  
+
   .meta-group label {
     flex: 1;
     min-width: 150px;
   }
-  
+
   .layout {
     grid-template-columns: 1fr;
     padding: 16px;
     gap: 16px;
   }
-  
+
   .controls {
     position: relative;
     top: 0;
     max-height: none;
     order: 2;
   }
-  
+
   .quote-wrapper {
     order: 1;
   }
-  
+
   .client {
     grid-template-columns: 1fr;
     padding: 16px;
   }
-  
+
   .summary-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .payment-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .signature-section {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2349,50 +2518,51 @@ input[type="number"] {
 
 /* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
+
   /* Header */
   .header {
     padding: 12px;
   }
-  
+
   .brand {
     margin-bottom: 12px;
   }
-  
+
   .logo {
     width: 36px;
     height: 36px;
     font-size: 16px;
   }
-  
+
   .brand-text h1 {
     font-size: 16px;
   }
-  
+
   .brand-text p {
     font-size: 11px;
   }
-  
+
   .doc-meta {
     gap: 8px;
   }
-  
+
   .meta-group {
     flex-direction: column;
     gap: 8px;
     width: 100%;
   }
-  
+
   .meta-group label {
     width: 100%;
   }
-  
+
   .modern-input,
   .modern-select {
     width: 100%;
     font-size: 14px;
     padding: 10px;
   }
-  
+
   .btn-primary,
   .btn-secondary,
   .btn-danger {
@@ -2401,263 +2571,263 @@ input[type="number"] {
     font-size: 14px;
     justify-content: center;
   }
-  
+
   /* Client Details */
   .client {
     grid-template-columns: 1fr;
     padding: 12px;
     gap: 12px;
   }
-  
+
   .client-card {
     padding: 12px;
   }
-  
+
   /* Layout */
   .layout {
     grid-template-columns: 1fr;
     padding: 12px;
     gap: 12px;
   }
-  
+
   .controls {
     padding: 16px;
     border-radius: 8px;
   }
-  
+
   /* Form Groups */
   .form-group {
     gap: 12px;
   }
-  
+
   .row {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
+
   /* Actions */
   .actions {
     gap: 8px;
   }
-  
+
   .actions button {
     width: 100%;
     padding: 12px;
   }
-  
+
   /* Quote Preview */
   .quote {
     padding: 16px;
   }
-  
+
   .quote-header-preview {
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .company-info h2 {
     font-size: 18px;
   }
-  
+
   .company-info p {
     font-size: 12px;
   }
-  
+
   .quote-meta-preview {
     text-align: left;
     font-size: 12px;
   }
-  
+
   .client-info-preview {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 12px;
     font-size: 13px;
   }
-  
+
   /* Tables */
   table {
     font-size: 11px;
   }
-  
+
   thead th {
     padding: 8px 4px;
     font-size: 10px;
   }
-  
+
   tbody td {
     padding: 8px 4px;
     font-size: 11px;
   }
-  
+
   /* Hide less important columns on mobile */
   .mobile-hide {
     display: none;
   }
-  
+
   /* Make table scrollable horizontally */
   .quote-wrapper {
     overflow-x: auto;
   }
-  
+
   table {
     min-width: 600px;
   }
-  
+
   /* Summary */
   .quotation-summary {
     padding: 12px;
   }
-  
+
   .summary-section {
     padding: 12px;
   }
-  
+
   .summary-section h4 {
     font-size: 14px;
   }
-  
+
   .summary-item {
     padding: 8px 10px;
     font-size: 12px;
   }
-  
+
   .summary-value {
     font-size: 13px;
   }
-  
+
   .grand-total-box {
     padding: 16px;
   }
-  
+
   .grand-total-value {
     font-size: 24px;
   }
-  
+
   .grand-total-words {
     font-size: 11px;
   }
-  
+
   /* Payment Section */
   .payment-section {
     padding: 12px;
   }
-  
+
   .section-title {
     font-size: 12px;
     padding: 10px 12px;
   }
-  
+
   .payment-row {
     grid-template-columns: 1fr;
   }
-  
+
   .payment-col {
     padding: 10px 12px;
     border-right: none;
     border-bottom: 1px solid #000000;
     font-size: 12px;
   }
-  
+
   .payment-col:last-child {
     border-bottom: none;
   }
-  
+
   /* Specifications */
   .specifications-table {
     font-size: 10px;
   }
-  
+
   .specifications-table td {
     padding: 8px 6px;
   }
-  
+
   .spec-label {
     width: 100px;
   }
-  
+
   .spec-value {
     width: 120px;
   }
-  
+
   .spec-measurement {
     width: 50px;
   }
-  
+
   /* Warranty Section */
   .warranty-section {
     padding: 0;
   }
-  
+
   .subsection-title {
     font-size: 11px;
     padding: 8px 12px;
   }
-  
+
   .terms-list {
     padding: 12px;
   }
-  
+
   .term-item {
     padding: 10px 0;
     font-size: 11px;
   }
-  
+
   /* Bank Details */
   .bank-details-grid {
     grid-template-columns: 1fr;
     padding: 12px;
   }
-  
+
   .bank-section .bank-item {
     padding: 8px 10px;
     font-size: 12px;
   }
-  
+
   /* Signature */
   .signature-section {
     padding: 16px 12px;
     gap: 20px;
   }
-  
+
   .signature-line {
     height: 60px;
   }
-  
+
   .signature-label {
     font-size: 12px;
   }
-  
+
   .signature-date {
     font-size: 11px;
   }
-  
+
   /* Footer */
   .quotation-footer {
     padding: 16px 12px;
   }
-  
+
   .quotation-footer p {
     font-size: 14px;
   }
-  
+
   /* Totals */
   .total-item {
     padding: 8px;
     font-size: 12px;
   }
-  
+
   .total-item.total-grand {
     padding: 12px;
     font-size: 14px;
   }
-  
+
   /* Section Header */
   .section-header-cell {
     padding: 10px 12px !important;
     font-size: 12px;
   }
-  
+
   /* Delete and Duplicate Buttons */
   .delete-btn,
   .duplicate-btn {
@@ -2672,69 +2842,69 @@ input[type="number"] {
   .header {
     padding: 10px;
   }
-  
+
   .logo {
     width: 32px;
     height: 32px;
     font-size: 14px;
   }
-  
+
   .brand-text h1 {
     font-size: 14px;
   }
-  
+
   .brand-text p {
     font-size: 10px;
   }
-  
+
   .btn-primary,
   .btn-secondary,
   .btn-danger {
     padding: 10px 12px;
     font-size: 13px;
   }
-  
+
   .quote {
     padding: 12px;
   }
-  
+
   .company-info h2 {
     font-size: 16px;
   }
-  
+
   table {
     font-size: 10px;
     min-width: 500px;
   }
-  
+
   thead th {
     padding: 6px 3px;
     font-size: 9px;
   }
-  
+
   tbody td {
     padding: 6px 3px;
     font-size: 10px;
   }
-  
+
   .grand-total-value {
     font-size: 20px;
   }
-  
+
   .section-title {
     font-size: 11px;
     padding: 8px 10px;
   }
-  
+
   .payment-col {
     padding: 8px 10px;
     font-size: 11px;
   }
-  
+
   .term-item {
     font-size: 10px;
   }
-  
+
   .bank-section .bank-item {
     font-size: 11px;
   }
@@ -2745,7 +2915,7 @@ input[type="number"] {
   .header {
     position: relative;
   }
-  
+
   .controls {
     max-height: 70vh;
     overflow-y: auto;
@@ -2754,25 +2924,27 @@ input[type="number"] {
 
 /* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
+
   .btn-primary,
   .btn-secondary,
   .btn-danger {
     min-height: 44px;
     padding: 12px 16px;
   }
-  
+
   .modern-input,
   .modern-select,
   .modern-textarea {
     min-height: 44px;
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
+    /* Prevents zoom on iOS */
   }
-  
+
   .checkbox-label input[type="checkbox"] {
     width: 24px;
     height: 24px;
   }
-  
+
   /* Larger tap targets */
   .delete-btn,
   .duplicate-btn {
@@ -2786,12 +2958,12 @@ input[type="number"] {
   body {
     overflow-x: hidden;
   }
-  
+
   #root {
     overflow-x: hidden;
     width: 100%;
   }
-  
+
   * {
     max-width: 100%;
   }
@@ -2803,12 +2975,12 @@ input[type="number"] {
     max-width: 150px;
     font-size: 10px;
   }
-  
+
   .remark-cell {
     max-width: 100px;
     font-size: 10px;
   }
-  
+
   /* Stack table on very small screens */
   @media (max-width: 480px) {
     .quote-wrapper {
@@ -2823,19 +2995,19 @@ input[type="number"] {
   html {
     font-size: 14px;
   }
-  
+
   h1 {
     font-size: 1.5rem;
   }
-  
+
   h2 {
     font-size: 1.3rem;
   }
-  
+
   h3 {
     font-size: 1.1rem;
   }
-  
+
   h4 {
     font-size: 1rem;
   }
@@ -2846,11 +3018,11 @@ input[type="number"] {
   .form-group label {
     width: 100%;
   }
-  
+
   .label-text {
     font-size: 11px;
   }
-  
+
   .modern-textarea {
     min-height: 100px;
     font-size: 14px;
@@ -2869,7 +3041,7 @@ input[type="number"] {
   .divider {
     margin: 16px 0;
   }
-  
+
   .totals-section,
   .terms-section {
     margin-bottom: 16px;
@@ -2883,7 +3055,7 @@ input[type="number"] {
     overflow-x: auto;
     white-space: nowrap;
   }
-  
+
   thead,
   tbody,
   tr {
@@ -2908,7 +3080,7 @@ input[type="number"] {
     gap: 8px;
     width: 100%;
   }
-  
+
   .header .meta-group:last-child button {
     width: 100%;
     font-size: 12px;
@@ -2921,7 +3093,7 @@ input[type="number"] {
   .header .meta-group:last-child {
     display: none !important;
   }
-  
+
   /* Keep the controls sidebar visible on mobile */
   .controls {
     display: block;
@@ -2935,7 +3107,7 @@ input[type="number"] {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .actions button {
     width: 100%;
     display: flex !important;
@@ -2992,6 +3164,7 @@ input[type="number"] {
 
 /* Ensure they stay hidden on all screen sizes */
 @media screen {
+
   .header-page-1,
   .header-page-2,
   .footer-page {
@@ -3000,6 +3173,7 @@ input[type="number"] {
 }
 
 @media print {
+
   /* Show header/footer pages in all print scenarios */
   .header-page-1,
   .header-page-2,
@@ -3027,7 +3201,7 @@ input[type="number"] {
     align-items: center !important;
     justify-content: center !important;
   }
-  
+
   .header-page-1 *,
   .header-page-2 *,
   .footer-page * {
@@ -3035,7 +3209,7 @@ input[type="number"] {
     visibility: visible !important;
     opacity: 1 !important;
   }
-  
+
   .header-page-1 img,
   .header-page-2 img,
   .footer-page img {
@@ -3055,35 +3229,35 @@ input[type="number"] {
     opacity: 1 !important;
     z-index: 1 !important;
   }
-  
+
   /* Ensure proper page breaks - header 1 is first, no page before it */
   .header-page-1 {
     page-break-before: avoid !important;
     page-break-after: always !important;
   }
-  
+
   .header-page-2 {
     page-break-before: auto !important;
     page-break-after: always !important;
   }
-  
+
   .footer-page {
     page-break-before: always !important;
     page-break-after: avoid !important;
   }
-  
+
   /* Prevent extra page before header */
   .quote-wrapper {
     page-break-before: avoid !important;
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* Ensure quote content starts on new page after header 2 */
   .quote {
     page-break-before: always;
   }
-  
+
   /* Hide section controls completely */
   .section-controls {
     display: none !important;
@@ -3091,23 +3265,23 @@ input[type="number"] {
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* Remove margins from page */
   @page {
     margin: 0;
     size: auto;
   }
-  
+
   body {
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   html {
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* Remove the old ::before pseudo-element */
   .quote::before {
     display: none !important;
