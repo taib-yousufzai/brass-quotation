@@ -490,7 +490,7 @@ function ViewQuotation() {
             </div>
             <div className="bank-item">
               <span className="bank-label">Branch:</span>
-              <span className="bank-value">Main Branch, City</span>
+              <span className="bank-value">Jonapur, New Delhi</span>
             </div>
             <div className="bank-item">
               <span className="bank-label">Account Type:</span>

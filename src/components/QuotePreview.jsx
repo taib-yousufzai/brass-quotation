@@ -549,7 +549,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
               </div>
               <div className="bank-item">
                 <span className="bank-label">Branch:</span>
-                <span className="bank-value" contentEditable suppressContentEditableWarning>Main Branch, City</span>
+                <span className="bank-value" contentEditable suppressContentEditableWarning>Jonapur, New Delhi</span>
               </div>
               <div className="bank-item">
                 <span className="bank-label">Account Type:</span>
