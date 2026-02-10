@@ -126,12 +126,16 @@ function Header({ formData, setFormData, theme, setTheme, currency, setCurrency,
           <button className="btn-secondary" onClick={() => saveToFirebase(true)}>
             <FaSave /> Save to Database
           </button>
-          <button className="btn-secondary" onClick={loadByNumber}>
-            <FaDownload /> Load Quotation
-          </button>
-          <button className="btn-secondary" onClick={() => navigate('/list')}>
-            <FaList /> View All Quotations
-          </button>
+          {staffMode && (
+            <>
+              <button className="btn-secondary" onClick={loadByNumber}>
+                <FaDownload /> Load Quotation
+              </button>
+              <button className="btn-secondary" onClick={() => navigate('/list')}>
+                <FaList /> View All Quotations
+              </button>
+            </>
+          )}
           <button className="btn-danger" onClick={clearAll}>
             <FaTrash /> Clear / New
           </button>

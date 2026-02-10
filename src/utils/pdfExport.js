@@ -1,13 +1,13 @@
 import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
+import { jsPDF } from 'jspdf'
 import { consolidateItemsBySection } from './sectionConsolidator.js'
 import { getOptimalSettings, CANVAS_CAPTURE_CONFIG } from './pdfOptimizationConfig.js'
 
 // Load image as base64 with JPEG compression for smaller file size
-const loadImageAsBase64 = (url, quality = 0.85) => {
+const loadImageAsBase64 = (url, quality = 0.8) => {
   return new Promise((resolve, reject) => {
     const img = new Image()
-    img.crossOrigin = 'Anonymous'
+    // Remove crossOrigin for local assets as requested
     img.onload = () => {
       const canvas = document.createElement('canvas')
       canvas.width = img.width
@@ -46,38 +46,22 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
   wrapper.style.background = '#fff'
   wrapper.style.width = '100%'
   wrapper.style.boxSizing = 'border-box'
-  
+
   // Clone the preview area
   const clonedArea = previewArea.cloneNode(true)
-  
+
   // Remove action columns from the clone
   clonedArea.querySelectorAll('.no-print').forEach(el => el.remove())
-  
-  // Ensure the cloned area reflects consolidated sections
-  // The QuotePreview component already uses consolidateItemsBySection,
-  // so the cloned content should maintain section grouping
-  
+
   wrapper.appendChild(clonedArea)
   document.body.appendChild(wrapper)
 
   try {
-    // Validate that section consolidation is preserved
-    // Check if the cloned area maintains section grouping
-    const sectionHeaders = clonedArea.querySelectorAll('.section-header-row')
-    const sectionNames = new Set()
-    
-    sectionHeaders.forEach(header => {
-      const sectionName = header.textContent.trim()
-      if (sectionNames.has(sectionName)) {
-        console.warn(`Duplicate section header found in export: ${sectionName}`)
-      }
-      sectionNames.add(sectionName)
-    })
-
-    // Load header and footer images with JPEG compression (85% quality)
-    const headerImg1 = await loadImageAsBase64('/quotation header page 1.png', 0.85)
-    const headerImg2 = await loadImageAsBase64('/quotation header page 2.png', 0.85)
-    const footerImg = await loadImageAsBase64('/quotation footer.png', 0.85)
+    // Load header and footer images with JPEG compression (80% quality)
+    // Use encodeURI for handling spaces in filenames
+    const headerImg1 = await loadImageAsBase64(encodeURI('/quotation header page 1.png'), 0.8)
+    const headerImg2 = await loadImageAsBase64(encodeURI('/quotation header page 2.png'), 0.8)
+    const footerImg = await loadImageAsBase64(encodeURI('/quotation footer.png'), 0.8)
 
     const canvas = await html2canvas(wrapper, {
       ...CANVAS_CAPTURE_CONFIG.STANDARD,
@@ -87,9 +71,17 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
 
     document.body.removeChild(wrapper)
 
-    // Convert to JPEG for smaller file size (instead of PNG)
+    // Convert to JPEG for smaller file size
     const contentImg = canvas.toDataURL('image/jpeg', settings.jpegQuality)
-    const pdf = new jsPDF(orientation, 'mm', pageSize)
+
+    // Enable compression in jsPDF and use specified settings
+    const pdf = new jsPDF({
+      orientation: orientation,
+      unit: 'mm',
+      format: pageSize,
+      compress: true
+    })
+
     const pageWidth = pdf.internal.pageSize.getWidth()
     const pageHeight = pdf.internal.pageSize.getHeight()
 
@@ -100,8 +92,7 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
     pdf.addPage()
     pdf.addImage(headerImg2, 'JPEG', 0, 0, pageWidth, pageHeight, undefined, 'FAST')
 
-    // MIDDLE PAGES: Quotation content with consolidated sections
-    // The content maintains section grouping as established by consolidateItemsBySection
+    // MIDDLE PAGES: Quotation content
     const imgProps = pdf.getImageProperties(contentImg)
     const imgWidth = pageWidth
     const imgHeight = (imgProps.height * pageWidth) / imgProps.width
@@ -132,11 +123,9 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
     alert('Error exporting PDF. Please ensure header and footer images are available.')
   }
 
-  // Restore actual column visibility
+  // Restore column visibility
   if (staffMode) {
     document.querySelectorAll('.actual-col').forEach(el => el.style.display = '')
   }
-
-  // Restore action column visibility
   document.querySelectorAll('.no-print').forEach(el => el.style.display = '')
 }

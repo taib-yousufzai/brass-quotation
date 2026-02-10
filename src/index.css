@@ -132,6 +132,12 @@ html, body {
   font-family: inherit;
 }
 
+/* Ensure dropdown options are visible */
+.modern-select option {
+  background-color: #ffffff;
+  color: #0b1b3a;
+}
+
 .modern-input:focus, .modern-select:focus, .modern-textarea:focus {
   outline: none;
   border-color: var(--blue);
@@ -225,7 +231,9 @@ html, body {
   padding: 20px;
   position: sticky;
   top: 20px;
-  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 40px);
   max-height: calc(100vh - 40px);
   overflow-y: auto;
   box-shadow: 0 4px 16px var(--shadow);
@@ -334,16 +342,23 @@ html, body {
 
 .terms-section {
   margin-bottom: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
 }
 
-.terms-section h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--blue);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.modern-textarea {
+  padding: 10px 12px;
+  border: 2px solid var(--bd);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  transition: var(--transition);
+  font-family: inherit;
+  flex: 1;
+  resize: vertical;
 }
 
 .total-item {

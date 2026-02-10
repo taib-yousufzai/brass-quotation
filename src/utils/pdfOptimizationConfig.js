@@ -13,14 +13,14 @@ export const DPI_SETTINGS = {
 
 // Scale settings for html2canvas
 export const SCALE_SETTINGS = {
-  STANDARD: 1.5,    // Reduced for smaller file size
-  HIGH: 2,          // Balanced quality
-  MAXIMUM: 2.5      // Higher quality (larger files)
+  STANDARD: 1.0,    // Reduced for smallest file size
+  HIGH: 1.5,        // Balanced quality
+  MAXIMUM: 2.0      // Higher quality
 };
 
 // JPEG compression quality
 export const COMPRESSION_QUALITY = {
-  STANDARD: 0.75,   // 75% - smaller files, good quality
+  STANDARD: 0.8,    // 80% - optimized for size and quality
   HIGH: 0.85,       // 85% - balanced
   MAXIMUM: 0.90     // 90% - high quality
 };
@@ -74,7 +74,7 @@ export const getOptimalSettings = (quality = 'standard') => {
       dpi: DPI_SETTINGS.PRINT
     }
   };
-  
+
   return presets[quality] || presets.standard;
 };
 

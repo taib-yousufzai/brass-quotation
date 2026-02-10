@@ -48,8 +48,8 @@ function ItemForm({ addItem, staffMode }) {
 
   // Get presets for the selected section
   const sectionPresets = presets[section] || []
-  
-  const filteredPresets = sectionPresets.filter(p => 
+
+  const filteredPresets = sectionPresets.filter(p =>
     p.name.toLowerCase().includes(presetSearch.toLowerCase())
   )
 
@@ -57,7 +57,7 @@ function ItemForm({ addItem, staffMode }) {
     const presetName = e.target.value
     setPreset(presetName)
     if (!presetName) return
-    
+
     const p = sectionPresets.find(x => x.name === presetName)
     if (p) {
       setName(p.name)
@@ -102,15 +102,15 @@ function ItemForm({ addItem, staffMode }) {
         <h3><FaPlusCircle /> Add Item</h3>
         <div className="search-box" style={{ position: 'relative' }}>
           <FaSearch />
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="Search presets..."
             value={presetSearch}
             onChange={(e) => setPresetSearch(e.target.value)}
             style={{ paddingRight: presetSearch ? '30px' : '12px' }}
           />
           {presetSearch && (
-            <button 
+            <button
               onClick={() => setPresetSearch('')}
               style={{
                 position: 'absolute',
@@ -144,11 +144,10 @@ function ItemForm({ addItem, staffMode }) {
 
         <label>
           <span className="label-text"><FaBookmark /> Preset {presetSearch && `(${filteredPresets.length} found)`}</span>
-          <select 
-            className="modern-select preset-dropdown-scrollable" 
-            value={preset} 
+          <select
+            className="modern-select preset-dropdown-scrollable"
+            value={preset}
             onChange={handlePresetChange}
-            size="8"
           >
             <option value="">-- Select preset --</option>
             {filteredPresets.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
