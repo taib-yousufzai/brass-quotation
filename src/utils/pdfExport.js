@@ -29,9 +29,9 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
   const quoteContent = document.getElementById('quoteContent')
   if (!quoteContent) return
 
-  // High quality settings
-  const SCALE = 2
-  const QUALITY = 0.95
+  // HD quality settings
+  const SCALE = 3
+  const QUALITY = 1.0
 
   // Hide actual columns and no-print elements
   if (!staffMode) {
