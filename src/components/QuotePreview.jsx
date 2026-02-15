@@ -88,7 +88,7 @@ function QuotePreview({ formData, rows, deleteRow, duplicateRow, updateRow, curr
       {/* Header Page 1 - Hidden on screen, visible in print */}
       <div className="header-page-1">
         <img
-          src="/quotation header page 1.png"
+          src="/quotation header page 1.jpeg"
           alt="Header Page 1"
         />
       </div>

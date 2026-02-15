@@ -40,7 +40,7 @@ export const exportToPDF = async (formData, rows, staffMode, currency, pageSize,
   document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none')
 
   try {
-    const headerImg1 = await loadImageAsBase64(encodeURI('/quotation header page 1.png'), 0.9)
+    const headerImg1 = await loadImageAsBase64(encodeURI('/quotation header page 1.jpeg'), 0.9)
 
     // Setup PDF
     const pdf = new jsPDF({

@@ -205,7 +205,7 @@ function ViewQuotation() {
       {/* Header Page 1 - Full Page */}
       <div className="header-page-1">
         <img
-          src="/quotation header page 1.png"
+          src="/quotation header page 1.jpeg"
           alt="Header Page 1"
         />
       </div>
